@@ -156,3 +156,15 @@ code { background: var(--sage-soft); border-radius: 8px; padding: 1px 6px; }
   padding: 0 10px; font-size: 0.75rem; font-weight: 700;
 }
 .plan-day .notice p { margin: 0 0 8px; }
+
+.plan-slot { border-radius: 14px; padding: 8px 10px; margin: 0 -10px; border: 2px solid transparent; }
+.plan-slot.over { border-color: var(--sage-deep); background: var(--sage-soft); }
+.plan-item { display: flex; align-items: center; gap: 8px; position: relative; }
+.plan-item.dragging { z-index: 10; background: var(--surface); border-radius: 14px; box-shadow: 0 6px 18px rgba(91, 74, 58, 0.2); }
+.drag-handle {
+  flex: none; width: 36px; height: 36px; border-radius: var(--pill); border: 1px solid var(--border);
+  background: var(--surface); color: var(--brown-soft); font-size: 1.1rem; cursor: grab;
+  touch-action: none; /* damit das Ziehen am Handy nicht die Seite scrollt */
+}
+.drag-handle:active { cursor: grabbing; }
+.drag-handle:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 2px; }

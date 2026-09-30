@@ -39,7 +39,7 @@ Build mode: learn
   Learner check: 14 Gerichte wählen und den Plan ansehen. Dann nur 9 wählen: Tage-Auswahl und Hinweis prüfen. Zwei kalziumreiche Gerichte an einen Tag legen: Kommt die Warnung, und lässt sie sich wegklicken?
   Commit: `Add week planner with calcium warning`
 
-- [ ] **4. Du kannst Gerichte im Plan per Drag und Drop verschieben**
+- [x] **4. Du kannst Gerichte im Plan per Drag und Drop verschieben**
   Becomes usable: Gerichte lassen sich mit Maus und am Handy per Touch zwischen den Plätzen verschieben. Warnungen aktualisieren sich sofort, und die Änderung wird gespeichert.
   Why now: Drag und Drop ist das technisch heikelste Bedienelement (Touch). Es steht direkt nach dem Plan, damit ein Problem früh auffällt.
   PRD ref: `prd.md > Wochenplan`, `prd.md > The Core Journey` (Schritt 6)
@@ -94,3 +94,4 @@ Activity mode: —
 
 - Gerichtekarten haben "Diese Woche essen" und "Mehr Details" direkt in der Übersicht — die lernende Person wollte bekannte Gerichte wählen können, ohne jedes Mal die Detailansicht zu öffnen (Änderung in `prd.md` und `spec.md` nachgezogen).
 - Nährwerte der Gerichte werden aus den Zutaten berechnet (neu: `src/data/ingredients.js`, `src/lib/dishNutrients.js`) statt von Hand geschätzt — die Prüfung ergab, dass die geschätzten Werte bei Eisen, Kalzium und Vitamin C oft deutlich falsch lagen. Die Regel "nie Kalzium und Eisen zusammen" wurde auf "eisenreich nur unter 300 mg Kalzium" präzisiert, weil viele Zutaten beides enthalten; einzelne Rezepte wurden angepasst (Falafel ohne Tahini, weniger Tofu in Erdnuss-Nudeln, Paprika in Erbsen-Pesto-Nudeln und Burritos). Tofu ohne Kalziumangabe: 200 mg/100 g angenommen. Auf Wunsch der lernenden Person.
+- Drag und Drop am Handy (Touch) noch nicht geprüft — auf Wunsch der lernenden Person nach dem Vercel-Schritt (Schritt 6) testen; falls es hakt, Ersatz per Antippen und Auswählen einbauen.
