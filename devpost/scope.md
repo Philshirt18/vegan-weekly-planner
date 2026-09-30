@@ -3,41 +3,41 @@ doc: scope
 status: approved
 ---
 
-# Veganer Nährstoff-Wochenplaner (Arbeitstitel)
+# Vegan Weekly Planner (working title)
 
-Eine App, die einer veganen Familie die Woche plant: aus vorab nährstoffmäßig abgestimmten Gerichten, mit Rezepten und automatischer Einkaufsliste.
+An app that plans the week for a vegan family: from dishes that are already balanced for nutrients, with recipes and an automatic shopping list.
 
 ## The Unique Kernel
-Eine App speziell für vegane Ernährung, die darauf achtet, dass die Nährstoffe wirklich aufgenommen werden: Eisen zusammen mit Vitamin C, Kalzium nicht in derselben Mahlzeit wie Eisen (Kalzium eher mittags, Eisen eher abends), Protein in jedem Gericht und ein Proteinbedarf, der vom Gewicht der Familienmitglieder abhängt (auch für Kinder). Die Gerichte sind schon vorab so abgestimmt, dass die Nährstoffregeln erfüllt sind. Die Nutzer:in muss nicht rechnen.
+An app made specifically for vegan eating that takes care that nutrients are really absorbed: iron together with vitamin C, calcium not in the same meal as iron (calcium rather at lunch, iron rather at dinner), protein in every dish, and a protein need that depends on the weight of the family members (children too). The dishes are already balanced in advance so that the nutrition rules are met. The user does not have to calculate anything.
 
 ## Who It's For
-Eine vegane Familie mit Erwachsenen und einem kleinen Kind, zum Beispiel zwei Erwachsene und ein kleines Kind. Sie ernähren sich viel von Gemüse, Hülsenfrüchten und Tofu. Heute planen sie gar nicht: Sie kaufen spontan ein, was schmeckt und was sie ungefähr brauchen.
+A vegan family with adults and a young child, for example two adults and a small child. They eat a lot of vegetables, legumes and tofu. Today they do not plan at all: they shop spontaneously for what they like and what they roughly think they need.
 
 ## The Core Loop
-Die App öffnen, aus einer Liste von genau 17 Gerichten bis zu 14 für die Woche anklicken (bei weniger wählt man die Tage) (Mittag- und Abendessen; das Frühstück ist fast immer gleich). Die App verteilt sie auf die Woche. Per Drag und Drop lässt sich das ändern. Dann "Fertig" klicken: Es entsteht eine Einkaufsliste, auf der man abhakt, was schon da ist, und daraus die finale Einkaufsliste. Zu jedem Gericht gibt es ein Rezept mit Anleitung.
-Wiederkehrgrund: jede Woche neu planen und einkaufen, ohne Nachdenken über Nährstoffe.
+Open the app, choose up to 14 dishes for the week from a list of exactly 17 dishes (if you choose fewer, you pick the days) (lunch and dinner; breakfast is almost always the same). The app spreads them over the week. You can change that by drag and drop. Then click "Done": a shopping list appears where you tick off what you already have, and from that comes the final shopping list. Every dish has a recipe with a method.
+Reason to come back: plan and shop again every week, without thinking about nutrients.
 
 ## Inspiration & Identity
-Keine konkreten Vorbilder genannt (die Idee ist ein Meal-Planner mit Einkaufsliste, aber speziell vegan und nährstoffbewusst). Gewünscht: schönes Layout, einfach und leicht zu bedienen.
+No specific role models named (the idea is a meal planner with a shopping list, but specifically vegan and nutrition-aware). Wanted: a beautiful layout, simple and easy to use.
 
 ## Why This Matters to the Learner
-Einkaufen und Kochen gehören zu den schwierigsten Teilen des Familienalltags. Ziel ist, dass eine vegane Familie gut versorgt ist und dass die Person, die die App baut, die wichtigen Entscheidungen selbst trifft und versteht.
+Shopping and cooking are among the hardest parts of everyday family life. The aim is that a vegan family is well supplied, and that the person building the app makes and understands the important decisions about it themselves.
 
 ## What "Working" Looks Like
-Im Video: Man legt am Anfang ein Profil an (Familienmitglieder mit Gewicht, Erwachsene und Kind; Hinweis "Orientierung, keine medizinische Beratung"). Man sieht die Liste der Gerichte und wählt einige für die Woche aus. Die App verteilt sie auf Mittag und Abend, Kalzium eher mittags, Eisen eher abends. Man tauscht per Drag und Drop ein Gericht. Man klickt "Fertig", hakt auf der Einkaufsliste ab, was schon da ist, und bekommt die finale Einkaufsliste. Man öffnet ein Gericht und sieht das Rezept mit Anleitung.
-Der "Das ist cool"-Moment: aus ein paar Klicks werden ein ausgewogener Wochenplan und eine fertige Einkaufsliste.
+In the video: at the start you create a profile (family members with weight, adults and child; note "guideline values for orientation, not medical advice"). You see the list of dishes and choose some for the week. The app spreads them over lunch and dinner, calcium rather at lunch, iron rather at dinner. You swap a dish by drag and drop. You click "Done", tick off on the shopping list what you already have, and get the final shopping list. You open a dish and see the recipe with its method.
+The "that's cool" moment: from a few clicks come a balanced week plan and a ready shopping list.
 
 ## The POC Boundary
-- Profil: Familienmitglieder mit Gewicht (Erwachsene und Kind) und Hinweis "keine medizinische Beratung"
-- Liste mit 17 veganen Gerichten, vorab nährstoffmäßig abgestimmt, jedes mit Zutaten und Rezept mit Anleitung
-- Gerichte für die Woche auswählen (Mittag und Abend) und von der App auf die Woche verteilen lassen (Kalzium eher mittags, Eisen eher abends)
-- Änderung der Verteilung per Drag und Drop
-- Einkaufsliste mit Abhaken, was schon da ist, und finaler Einkaufsliste
+- Profile: family members with weight (adults and child) and the note "not medical advice"
+- List of 17 vegan dishes, balanced for nutrients in advance, each with ingredients and a recipe with a method
+- Choose dishes for the week (lunch and dinner) and let the app spread them over the week (calcium rather at lunch, iron rather at dinner)
+- Change the arrangement by drag and drop
+- Shopping list with ticking off what you already have, and a final shopping list
 
 ## Later
-- Größere Gerichteliste (25–30 Gerichte statt 17)
-- Gerichte selbst bearbeiten oder neu hinzufügen
-- Andere Ernährungsformen (vegetarisch, glutenfrei und weitere)
+- A bigger list of dishes (25–30 dishes instead of 17)
+- Edit dishes yourself or add new ones
+- Other diets (vegetarian, gluten-free and more)
 
 ## Explicitly Cut
-- Frühstück: bleibt fast immer gleich, muss nicht geplant werden.
+- Breakfast: it is almost always the same and does not need to be planned.

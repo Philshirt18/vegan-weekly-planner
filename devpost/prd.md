@@ -3,138 +3,141 @@ doc: prd
 status: approved
 ---
 
-# Veganer Nährstoff-Wochenplaner (Arbeitstitel) — Product Requirements
+# Vegan Weekly Planner (working title) — Product Requirements
 
-Eine App, die einer veganen Familie die Woche plant: aus 17 vorab nährstoffmäßig abgestimmten Gerichten mit Rezepten, einer Warnung bei ungünstiger Kalzium-/Eisen-Verteilung und einer automatischen, nach Kategorien sortierten Einkaufsliste.
+An app that plans the week for a vegan family: from 17 dishes that are balanced for nutrients in advance, with recipes, a note when calcium-rich dishes pile up on one day, and an automatic shopping list sorted by category.
 Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > What "Working" Looks Like`.
 
 ## The Core Journey
-1. Beim ersten Öffnen sieht man einen kurzen **Willkommensscreen**, der knapp beschreibt, was die App macht. (`scope.md > The Core Loop`)
-2. Danach kommt das **Familienprofil**: Man legt jedes Familienmitglied an (Name, Geschlecht, Alter, Gewicht, Feld für Schwangerschaft/Stillzeit). Ein Hinweis sagt, dass alle Werte Richtwerte und Orientierung sind, keine medizinische Beratung.
-3. Danach öffnet sich direkt die **Gerichteübersicht** mit den 17 Demo-Gerichten (Foto, Name und die Knöpfe "Diese Woche essen" und "Mehr Details"). Ein Button "Weiteres Gericht hinzufügen" steht dort, tut in der Demo aber nichts.
-4. Ein Klick auf ein Gericht öffnet die **Detailansicht**. Dort wählt man "Diese Woche essen" an oder ab.
-5. Wurden weniger als 14 Gerichte gewählt, fragt die App, **für welche Tage** der Plan gelten soll (Wochentage zum Anklicken). Jeder Tag hat ein Mittag- und ein Abendessen.
-6. Die App **verteilt** die gewählten Gerichte auf die Mahlzeiten der Woche. Per **Drag und Drop** kann man Gerichte verschieben. Sind an einem Tag beide Gerichte kalziumreich, erscheint eine **Warnung**; man entscheidet selbst, ob man trotzdem so lässt.
-7. Man klickt **"Fertig"**. Es erscheint eine **Vorschau der Einkaufsliste** mit allen Zutaten und Mengen, nach Kategorien sortiert.
-8. Man **hakt ab**, was man schon zu Hause hat. Daraus entsteht die **finale Einkaufsliste** mit dem, was noch fehlt.
-9. Erfolg: Aus ein paar Klicks sind ein Wochenplan und eine fertige Einkaufsliste geworden. Beim späteren Öffnen ist die Familie noch gespeichert.
+1. On first opening, you see a short **welcome screen** that briefly describes what the app does. (`scope.md > The Core Loop`)
+2. Then you **sign in** (email and password) and come to the **family profile**: you add each family member (name, sex, age, weight, field for pregnancy/breastfeeding). A note says that all values are guidelines for orientation, not medical advice.
+3. Next comes the **dishes overview** with the 17 demo dishes (photo, name and the buttons "Eat this week" and "More details"). A button "Add another dish" is there but does nothing in the demo.
+4. Clicking a dish opens the **detail view**. There you select or deselect "Eat this week".
+5. If fewer than 14 dishes were chosen, the app asks **for which days** the plan should apply (days of the week to click). Every day has a lunch and a dinner.
+6. The app **spreads** the chosen dishes over the meals of the week. You can move dishes by **drag and drop**. If both dishes of a day are high in calcium, a **note about iron absorption** appears; you decide yourself whether to keep it.
+7. You click **"Done"**. A **shopping list preview** appears with all ingredients and amounts, sorted by category.
+8. You **tick off** what you already have at home. From that comes the **final shopping list** with what is still missing.
+9. Success: a few clicks have become a week plan and a finished shopping list. When you come back later, the family is still saved.
 
 ## Screens and Layout
-- **Willkommensscreen:** kurzer Text, was die App macht, ein Button zum Weitergehen.
-- **Familienprofil:** eine Liste der angelegten Personen und ein Formular zum Hinzufügen (Name, Geschlecht, Alter, Gewicht, Schwangerschaft/Stillzeit) mit dem Hinweis "keine medizinische Beratung". Ein Button führt zur Gerichteübersicht.
-- **Gerichteübersicht:** Raster aus Karten für 17 Gerichte, jede mit Foto, Name, Knopf "Diese Woche essen" (direkt wählen) und Knopf "Mehr Details". Markierung, welche Gerichte für diese Woche gewählt sind. Button "Weiteres Gericht hinzufügen" (ohne Funktion in der Demo).
-- **Detailansicht:** von oben nach unten Foto mit Name, Nährstoffe, Zutaten, Anleitung. Dazu die Auswahl "Diese Woche essen".
-- **Tage wählen:** erscheint nur bei weniger als 14 gewählten Gerichten; Wochentage zum Anklicken.
-- **Wochenplan:** die Woche mit Mittag und Abend pro Tag, Gerichte per Drag und Drop verschiebbar, Warnungen sichtbar, Button "Fertig".
-- **Einkaufsliste:** zuerst die Vorschau mit Kategorien, Zutaten und Mengen zum Abhaken, dann die finale Liste.
+- **Welcome screen:** a short text about what the app does, a button to continue.
+- **Sign-in:** email and password, with "create account".
+- **Family profile:** a list of the people added and a form to add one (name, sex, age, weight, pregnancy/breastfeeding) with the note "not medical advice". A button leads to the dishes overview.
+- **Dishes overview:** grid of cards for 17 dishes, each with photo, name, a button "Eat this week" (choose directly) and a button "More details". A marker shows which dishes are chosen for this week. Button "Add another dish" (without function in the demo).
+- **Detail view:** from top to bottom photo with name, focus label, nutrition, ingredients (with portion picker), method. Plus the choice "Eat this week".
+- **Choose days:** appears only when fewer than 14 dishes are chosen; days of the week to click.
+- **Week plan:** the week with lunch and dinner per day, dishes movable by drag and drop, notes visible, button "Done".
+- **Shopping list:** first the preview with categories, ingredients and amounts to tick off, then the final list.
 
 ## Look and Feel
-- Familienfreundlich, ruhig (es ist eine Organisations-App).
-- Weiche, helle Pastelltöne, matt: Grüntöne, Beige, etwas Braun.
-- Runde statt eckige Buttons.
-- Gut lesbare Schrift, die nicht zu streng wirkt.
-- Keine konkreten Vorbild-Apps genannt.
+- Family-friendly, calm (it is an organising app).
+- Soft, light pastel colours, matte: greens, beige, a little brown.
+- Round rather than square buttons.
+- A well readable font that does not look too strict.
+- No specific role-model apps named.
 
 ## Features and Behavior
 
-### Familienprofil
-- Pro Person: Name, Geschlecht, Alter, Gewicht, Schwangerschaft/Stillzeit.
-- Aus Alter, Geschlecht, Gewicht und Schwangerschaft/Stillzeit ergeben sich Richtwerte für die Nährstoffe (zum Beispiel Protein nach Gewicht). Kinder bekommen kindgerechte Werte.
-- Hinweis auf jeder Seite mit Nährstoffwerten: Richtwerte und Orientierung, keine medizinische Beratung.
-- Nutzer:in: Ein Elternteil in einer veganen Familie (zum Beispiel zwei Erwachsene und ein kleines Kind) will die Familie eintragen, damit die Werte passen.
-  - [ ] Man kann mindestens drei Personen anlegen, darunter ein Kind.
-  - [ ] Die Felder Name, Geschlecht, Alter, Gewicht und Schwangerschaft/Stillzeit sind vorhanden.
-  - [ ] Der Hinweis "keine medizinische Beratung" ist sichtbar.
+### Family profile
+- Per person: name, sex, age, weight, pregnancy/breastfeeding.
+- From age, sex, weight and pregnancy/breastfeeding come guideline values for the nutrients (for example protein by weight). Children get child-appropriate values.
+- A note on every page with nutrition values: guidelines for orientation, not medical advice.
+- User: a parent in a vegan family (for example two adults and a young child) who wants to enter the family so the values fit them.
+  - [ ] You can add at least three people, including a child.
+  - [ ] The fields name, sex, age, weight and pregnancy/breastfeeding are present.
+  - [ ] The note "not medical advice" is visible.
 
-### Gerichte auswählen
-- 17 Gerichte, alle vegan und vorab nährstoffmäßig abgestimmt (Protein in jedem Gericht, Eisen mit Vitamin C, Kalzium und Eisen nicht im selben Gericht). Die Nutzer:in muss nichts nachrechnen.
-- Übersicht zeigt Foto, Name und zwei Knöpfe: "Diese Woche essen" (direkt an- oder abwählen, ohne die Detailansicht zu öffnen) und "Mehr Details".
-- Die Detailansicht enthält: Foto mit Name, Schwerpunkt-Etikett ("Kalziumreich" oder "Eisenreich, mit Vitamin C") mit kurzem, neutralem Hinweis (Kalzium: "wichtig für Knochen und Zähne"), Nährstoffe, Zutaten, Anleitung (in dieser Reihenfolge), plus die Auswahl "Diese Woche essen".
-  - [ ] Es gibt genau 17 Gerichte, jedes mit Foto, Name, Nährstoffen, Zutaten und Anleitung.
-  - [ ] Ein Klick öffnet die Detailansicht in der genannten Reihenfolge.
-  - [ ] In der Detailansicht lassen sich die Portionen für das Rezept in halben Schritten wählen (Startwert: die Portionen der Familie). Die Zutatenmengen im Rezept rechnen sich um; die Einkaufsliste bleibt bei der Familie.
-  - [ ] Das Gericht lässt sich an- und abwählen; die Übersicht zeigt, was gewählt ist.
-  - [ ] "Weiteres Gericht hinzufügen" ist sichtbar, hat aber keine Funktion.
+### Choosing dishes
+- 17 dishes, all vegan and balanced for nutrients in advance (protein in every dish, iron with vitamin C, calcium and iron not in the same dish). The user does not have to calculate anything.
+- The overview shows photo, name and two buttons: "Eat this week" (select or deselect directly, without opening the detail view) and "More details".
+- The detail view contains: photo with name, focus label ("High in calcium" or "High in iron, with vitamin C") with a short, neutral note (calcium: "important for bones and teeth"), nutrition, ingredients, method (in this order), plus the choice "Eat this week".
+  - [ ] There are exactly 17 dishes, each with photo, name, nutrition, ingredients and method.
+  - [ ] A click opens the detail view in the order given.
+  - [ ] In the detail view, the portions for the recipe can be chosen in half steps (starting value: the family's portions). The ingredient amounts in the recipe recalculate; the shopping list stays with the family.
+  - [ ] The dish can be selected and deselected; the overview shows what is chosen.
+  - [ ] "Add another dish" is visible but has no function.
 
-### Wochenplan
-- Vollständige Woche = 14 Gerichte (7 Tage × Mittag und Abend).
-- Bei weniger als 14 gewählten Gerichten fragt die App, für welche Tage der Plan gelten soll. Pro gewähltem Tag gibt es zwei Plätze.
-- Passt die Zahl der gewählten Gerichte nicht zu den Plätzen (ungerade Zahl oder mehr Gerichte als Plätze), zeigt die App einen Hinweis; man wählt Gerichte ab oder fügt eines hinzu.
-- Die App verteilt die Gerichte auf die Mahlzeiten. Mittag oder Abend ist für Kalzium und Eisen egal.
-- Drag und Drop ändert die Verteilung.
-- Sind an einem Tag beide Gerichte kalziumreich, erscheint eine Warnung. Die Nutzer:in kann sie ignorieren.
-  - [ ] Bei weniger als 14 Gerichten erscheint die Tage-Auswahl.
-  - [ ] Bei nicht passender Anzahl erscheint ein Hinweis, der zum An-/Abwählen führt.
-  - [ ] Nach der Verteilung ist jede gewählte Mahlzeit mit einem Gericht belegt.
-  - [ ] Ein Gericht lässt sich per Drag und Drop verschieben.
-  - [ ] Zwei kalziumreiche Gerichte am selben Tag lösen eine Warnung aus, die man wegklicken kann.
+### Week plan
+- A full week = 14 dishes (7 days × lunch and dinner).
+- If fewer than 14 dishes are chosen, the app asks for which days the plan should apply. Each chosen day has two slots.
+- If the number of chosen dishes does not match the slots (odd number or more dishes than slots), the app shows a note; you deselect dishes or add one.
+- The app spreads the dishes over the meals. Lunch or dinner does not matter for calcium and iron.
+- Drag and drop changes the arrangement.
+- If both dishes of a day are high in calcium, a note about iron absorption appears. The user can ignore it.
+  - [ ] With fewer than 14 dishes the day selection appears.
+  - [ ] With a number that does not fit, a note appears that leads to selecting/deselecting.
+  - [ ] After the spreading, every chosen meal is filled with a dish.
+  - [ ] A dish can be moved by drag and drop.
+  - [ ] Two calcium-rich dishes on the same day trigger a note that can be dismissed.
 
-### Einkaufsliste
-- Alle Zutaten aller gewählten Gerichte der gewählten Tage.
-- Mengen werden auf die Familie umgerechnet.
-- Gleiche Zutaten werden zusammengezählt (zum Beispiel eine Summe Zwiebeln statt mehrerer Einträge).
-- Sortiert nach Kategorien (Gemüse, Hülsenfrüchte, Gekühltes wie Tofu und Tempeh und so weiter).
-- Zuerst eine Vorschau mit allen Zutaten und Mengen; man hakt ab, was schon zu Hause ist; daraus entsteht die finale Liste.
-  - [ ] Jede Zutat der gewählten Gerichte taucht auf der Liste auf.
-  - [ ] Eine Zutat, die in mehreren Gerichten vorkommt, steht nur einmal mit der Gesamtmenge da.
-  - [ ] Zutaten sind nach Kategorien gruppiert.
-  - [ ] Abgehakte Zutaten fehlen in der finalen Liste.
+### Shopping list
+- All ingredients of all chosen dishes of the chosen days.
+- Amounts are scaled to the family.
+- Identical ingredients are added up (for example one total of onions instead of several entries).
+- Sorted by category (vegetables, legumes, chilled items such as tofu and tempeh, and so on).
+- First a preview with all ingredients and amounts; you tick off what is already at home; from that comes the final list.
+  - [ ] Every ingredient of the chosen dishes appears on the list.
+  - [ ] An ingredient that occurs in several dishes appears only once with the total amount.
+  - [ ] Ingredients are grouped by category.
+  - [ ] Ticked-off ingredients are missing from the final list.
 
 ## States and Boundaries
-- **Erster Start** — Willkommensscreen, dann leeres Familienprofil.
-- **Wiederkehr** — Die App erinnert sich an die Familie (siehe Product Decisions).
-- **Keine Gerichte gewählt** — Der Weg zum Wochenplan ist gesperrt oder zeigt einen Hinweis, dass Gerichte gewählt werden müssen. (Annahme, siehe Open Questions.)
-- **Zahl der Gerichte passt nicht** — Hinweis mit Möglichkeit, Gerichte an- oder abzuwählen.
-- **Kalzium-Konflikt** — Warnung, die die Nutzer:in bewusst übergehen darf.
-- **Alle Zutaten abgehakt** — Die finale Liste ist leer (Annahme, siehe Open Questions).
+- **First start** — welcome screen, then sign-in, then an empty family profile.
+- **Coming back** — the app remembers the family (see Product Decisions).
+- **No dishes chosen** — the way to the week plan is blocked or shows a note that dishes must be chosen. (Assumption, see Open Questions.)
+- **Number of dishes does not fit** — note with the option to select or deselect dishes.
+- **Calcium conflict** — a note that the user may knowingly ignore.
+- **All ingredients ticked off** — the final list is empty (assumption, see Open Questions).
 
 ## Product Decisions
-- Nur vegan, keine anderen Ernährungsformen in der Demo — mehr Fokus und weniger Aufwand.
-- Nährstoffe stecken in den vorab abgestimmten Gerichten statt live berechnet — die Nutzer:in muss nicht rechnen, die Demo bleibt einfach. Die Nährwerte der Gerichte werden aus den Zutaten berechnet (Näherungswerte).
-- Regel "Kalzium und Eisen nicht zusammen": Ein Gericht gilt als kalziumreich ab 300 mg Kalzium und als eisenreich nur mit weniger als 300 mg Kalzium (ab etwa 300 mg lässt die Eisenaufnahme in einer Mahlzeit merklich nach). Grund: Viele pflanzliche Lebensmittel (Tofu, Bohnen, Grünkohl, Sesam) enthalten beides, eine strikte Trennung wäre nicht machbar. Tofu ohne Kalziumangabe: 200 mg pro 100 g angenommen.
-- Profil mit Gewicht, Alter, Geschlecht und Schwangerschaft/Stillzeit — Richtwerte passen sich der Person an, auch für Kinder.
-- Hinweis "keine medizinische Beratung" — verantwortungsvoll; die Werte sind Orientierung.
-- Nur Mittag- und Abendessen — das Frühstück ist fast immer gleich.
-- 17 Gerichte, davon werden bis zu 14 für die Woche gewählt — so hat die Auswahl eine Bedeutung.
-- Rezepte mit Anleitung sind in der Demo drin — die Nutzer:in wollte sie schon in dieser Version.
-- Portionswahl im Rezept (halbe Schritte, Startwert Familie), wirkt nur auf die Rezeptansicht, nicht auf die Einkaufsliste — erleichtert das Kochen; die Einkaufsliste bleibt einfach.
-- Kalzium-und-Eisen-Regel als Warnung statt als Sperre — die Nutzer:in entscheidet selbst.
-- Mengen werden auf die Familie umgerechnet und gleiche Zutaten addiert — die Einkaufsliste soll direkt nutzbar sein.
-- Die App merkt sich die Familie — Wiederkehr ohne erneute Eingabe.
-- Login: gewünscht, wenn es ohne großen Aufwand geht — Entscheidung im Spec.
+- Vegan only, no other diets in the demo — more focus and less effort.
+- Nutrients are built into the dishes that are balanced in advance instead of being calculated live — the user does not have to calculate, the demo stays simple. The nutrition of the dishes is computed from the ingredients (approximate values).
+- Rule "calcium and iron not together": a dish counts as high in calcium from 300 mg calcium and as high in iron only with less than 300 mg calcium (from about 300 mg in one meal, iron absorption drops noticeably). Reason: many plant foods (tofu, beans, kale, sesame) contain both, so a strict separation would not be feasible. Tofu without a calcium label: 200 mg per 100 g assumed.
+- Profile with weight, age, sex and pregnancy/breastfeeding — guideline values adapt to the person, children too.
+- Note "not medical advice" — responsible; the values are for orientation.
+- Only lunch and dinner — breakfast is almost always the same.
+- 17 dishes, of which up to 14 are chosen for the week — this gives the choice a meaning.
+- Recipes with a method are in the demo — the user wanted them in this version already.
+- Portion picker in the recipe (half steps, starting value the family), only affects the recipe view, not the shopping list — makes cooking easier; the shopping list stays simple.
+- Calcium-and-iron rule as a note instead of a block — the user decides for themselves. The note refers to iron absorption and is worded neutrally (calcium itself is not harmful).
+- Amounts are scaled to the family and identical ingredients added — the shopping list should be usable directly.
+- The app remembers the family and the plan — coming back without entering everything again.
+- Login with email and password (Firebase) so that phone and computer show the same data.
+- The whole app is in English (decided by the user after the first builds).
 
 ## What We're Building
-- Willkommensscreen
-- Familienprofil (Name, Geschlecht, Alter, Gewicht, Schwangerschaft/Stillzeit, Hinweis "keine medizinische Beratung")
-- 17 Gerichte mit Foto, Name, Nährstoffen, Zutaten und Anleitung
-- Gerichteübersicht und Detailansicht mit Auswahl "Diese Woche essen"
-- Button "Weiteres Gericht hinzufügen" (ohne Funktion)
-- Tage-Auswahl bei weniger als 14 Gerichten und Hinweis bei nicht passender Anzahl
-- Wochenplan mit Verteilung, Drag und Drop und Warnung bei zwei kalziumreichen Gerichten am selben Tag
-- Einkaufsliste mit Kategorien, umgerechneten und zusammengezählten Mengen, Abhaken und finaler Liste
-- Speichern der Familie zwischen den Besuchen
+- Welcome screen
+- Sign-in
+- Family profile (name, sex, age, weight, pregnancy/breastfeeding, note "not medical advice")
+- 17 dishes with photo, name, nutrition, ingredients and method
+- Dishes overview and detail view with the choice "Eat this week" and a portion picker for the recipe
+- Button "Add another dish" (without function)
+- Day selection when fewer than 14 dishes, and a note when the number does not fit
+- Week plan with spreading, drag and drop and a note for two calcium-rich dishes on the same day
+- Shopping list with categories, scaled and added-up amounts, ticking off and a final list
+- Saving the family, plan and ticked items between visits
 
 ## Deferred From the POC
-- Gerichte selbst hinzufügen oder bearbeiten — der Button ist nur ein Platzhalter.
-- Andere Ernährungsformen (vegetarisch, glutenfrei und weitere) — Fokus auf vegan.
-- Größere Gerichteliste (25–30 Gerichte) — für die Demo genügen 17.
-- Login mit Konten, falls der Aufwand zu groß ist — siehe Open Questions.
+- Adding or editing dishes yourself — the button is only a placeholder.
+- Other diets (vegetarian, gluten-free and more) — focus on vegan.
+- A bigger list of dishes (25–30 dishes) — 17 are enough for the demo.
+- Password reset and other sign-in methods.
 
 ## Possible Later Enhancements
-- Weitere Ernährungsformen als Einstellung.
-- Aktivität der Familienmitglieder als weiterer Faktor für die Richtwerte.
-- Warnung auch bei zwei eisenreichen Gerichten am selben Tag.
-- Hinweise zu weiteren veganen Nährstoffen (vor allem Vitamin B12, außerdem Jod, Vitamin D, Zink, Omega-3), die sich nicht über einzelne Gerichte decken lassen.
+- Other diets as a setting.
+- Activity of the family members as a further factor for the guideline values.
+- A note also for two iron-rich dishes on the same day.
+- Notes about further vegan nutrients (above all vitamin B12, also iodine, vitamin D, zinc, omega-3) that cannot be covered by individual dishes.
 
 ## Non-Goals
-- Keine medizinische Beratung oder Diagnose.
-- Kein Frühstücksplan (bleibt fast immer gleich).
-- Keine Live-Berechnung der Nährstoffe pro Gericht.
+- No medical advice or diagnosis.
+- No breakfast plan (it stays almost always the same).
+- No live calculation of nutrients per dish.
 
 ## Open Questions
-- **Login:** Entschieden im Spec: Die Demo enthält Anmeldung mit E-Mail und Passwort (Firebase), damit Handy und Computer dieselben Daten zeigen. Siehe `spec.md`.
-- **Portionen:** Wie zählt ein Kind gegenüber einem Erwachsenen bei den Mengen (zum Beispiel halbe Portion)? Der Spec klärt das mit der Nutzer:in. Vor dem Spec: nein.
-- **Herkunft der Nährstoffrichtwerte** für Kinder und Erwachsene (welche Quelle). Der Spec klärt das. Vor dem Spec: nein.
-- **Fotos:** Woher die 17 Gerichtebilder kommen. Der Spec klärt das. Vor dem Spec: nein.
-- **Leere Zustände:** Was die App bei null gewählten Gerichten und bei komplett abgehakter Liste zeigt (Annahme oben). Bitte im Review bestätigen.
-- **Wochenplan merken:** Ob auch der gewählte Wochenplan gespeichert wird oder nur die Familie. Bitte im Review bestätigen.
+- **Login:** Decided in the spec: the demo contains sign-in with email and password (Firebase) so that phone and computer show the same data. See `spec.md`.
+- **Portions:** Decided: adults count as one portion, children up to 12 years as half a portion.
+- **Source of the guideline values** for children and adults: decided in the build, the DGE (D-A-CH) reference values.
+- **Photos:** The dish photos are created by the user with an AI image tool; until then the app shows placeholders.
+- **Empty states:** Assumptions confirmed: with no dishes chosen the way to the week plan is blocked; with everything ticked off the final list says there is nothing to buy.
+- **Remembering the week plan:** Confirmed: the chosen week plan is saved as well, not only the family.
