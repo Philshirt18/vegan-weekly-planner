@@ -3,21 +3,22 @@ import { useAppState } from '../lib/AppState.jsx'
 import { DAYS, countStatus, distribute, sortDays } from '../lib/planner.js'
 
 export default function PlanDays() {
-  const { data, update } = useAppState()
+  const { week, updateWeek } = useAppState()
   const navigate = useNavigate()
-  const count = data.selectedDishIds.length
-  const days = data.days
+  const count = week.selectedDishIds.length
+  const days = week.days
   const status = countStatus(count, days)
 
   if (count === 0) return <Navigate to="/dishes" replace />
 
-  const toggleDay = (id) => {
-    const next = days.includes(id) ? days.filter((d) => d !== id) : sortDays([...days, id])
-    update({ days: next, plan: {} })
-  }
+  const toggleDay = (id) =>
+    updateWeek((w) => ({
+      days: w.days.includes(id) ? w.days.filter((d) => d !== id) : sortDays([...w.days, id]),
+      plan: {},
+    }))
 
   const createPlan = () => {
-    update({ plan: distribute(data.selectedDishIds, days) })
+    updateWeek({ plan: distribute(week.selectedDishIds, days) })
     navigate('/week')
   }
 

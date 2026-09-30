@@ -76,6 +76,10 @@ PRD ref: `prd.md > Choosing dishes`.
 Click days when fewer than 14 dishes are chosen. Note when the number does not fit. Spreading of the dishes over lunch and dinner, drag and drop, a note for two calcium-rich dishes on the same day (can be dismissed). A note when no dish is chosen.
 PRD ref: `prd.md > Week plan`, `prd.md > States and Boundaries`.
 
+### Week switcher
+Shown on the dishes, detail, week plan and shopping pages. Previous/next arrows, the name of the week with its dates, a link back to this week; from last week up to 8 weeks ahead. The chosen week is kept for the browser session. When the week changes, the page below is created anew, so page-only state (dismissed notes, preview or final list) starts fresh.
+PRD ref: `prd.md > Weeks`.
+
 ### Shopping list
 Preview with categories, ingredients and amounts, ticking off what is at home, final list in which items are ticked off while shopping (struck through, with a counter). Empty state when everything is ticked off.
 PRD ref: `prd.md > Shopping list`.
@@ -102,11 +106,14 @@ PRD ref: `prd.md > States and Boundaries` (coming back).
 
 **Personal data (Firestore):** one entry per user, `users/{user ID}`:
 - `members`: list with `id`, `name`, `sex` (`female`/`male`/`diverse`), `age`, `weightKg`, `status` (`none`/`pregnant`/`breastfeeding`),
-- `selectedDishIds`: chosen dishes,
-- `days`: chosen days of the week (`mon` … `sun`),
-- `plan`: for every day `lunch` and `dinner` with a dish ID,
-- `checkedIngredients`: ingredients ticked in the preview as "already at home" (key `name|unit`),
-- `boughtIngredients`: ingredients ticked in the final list as "in the cart" (key `name|unit`).
+- `weeks`: a map from the date of a week's Monday (`YYYY-MM-DD`) to that week's data:
+  - `selectedDishIds`: chosen dishes,
+  - `days`: chosen days of the week (`mon` … `sun`),
+  - `plan`: for every day `lunch` and `dinner` with a dish ID,
+  - `checkedIngredients`: ingredients ticked in the preview as "already at home" (key `name|unit`),
+  - `boughtIngredients`: ingredients ticked in the final list as "in the cart" (key `name|unit`).
+
+Entries from before the weeks existed (one plan at the top level) are moved into the current week when loaded (`lib/storedData.js`). A week is saved as a whole with `updateDoc`, which replaces the field; `setDoc` with merge would merge objects and bring back a cleared plan after reloading.
 
 **Where it lives, how it changes, what happens on return:**
 - Fixed dishes: in the app, they only change with a new version.
@@ -130,7 +137,7 @@ project/
 │   │   ├── PlanDays.jsx         # Choose days / note about the number
 │   │   ├── WeekPlan.jsx         # Week plan with drag and drop
 │   │   └── Shopping.jsx         # Preview, ticking off, final list
-│   ├── components/              # Reusable pieces (layout, image, sign-in guard)
+│   ├── components/              # Reusable pieces (layout, week switcher, image, sign-in guard)
 │   ├── data/
 │   │   ├── dishes.js            # 17 dishes (fixed, ingredients and method)
 │   │   └── ingredients.js       # Nutrition per ingredient (approximate values), basis of the dish nutrition
@@ -139,6 +146,8 @@ project/
 │   │   ├── recipe.js            # Scale ingredient amounts for cooking to the chosen portions
 │   │   ├── nutrition.js         # Guideline values per person, portion factor
 │   │   ├── planner.js           # Spreading, days, calcium note, swapping
+│   │   ├── weeks.js             # Weeks by Monday date, moving between weeks, labels
+│   │   ├── storedData.js        # Reading stored data, moving old single plans into the current week
 │   │   ├── shopping.js          # Scale, add up, categories, formatting
 │   │   ├── firebase.js          # Sign-in, reading and writing
 │   │   └── AppState.jsx         # Central state, loading and saving

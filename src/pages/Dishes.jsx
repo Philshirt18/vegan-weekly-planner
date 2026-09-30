@@ -5,14 +5,14 @@ import DishImage from '../components/DishImage.jsx'
 import { ALL_DAY_IDS, MAX_DISHES, distribute } from '../lib/planner.js'
 
 export default function Dishes() {
-  const { selectedDishIds, toggleDish, update } = useAppState()
+  const { selectedDishIds, toggleDish, updateWeek, weekWords } = useAppState()
   const navigate = useNavigate()
   const count = selectedDishIds.length
 
   const goToPlan = () => {
     if (count === MAX_DISHES) {
       // Exactly 14 dishes fill the whole week, so no days need to be chosen.
-      update({ days: ALL_DAY_IDS, plan: distribute(selectedDishIds, ALL_DAY_IDS) })
+      updateWeek({ days: ALL_DAY_IDS, plan: distribute(selectedDishIds, ALL_DAY_IDS) })
       navigate('/week')
     } else {
       navigate('/week/days')
@@ -24,7 +24,7 @@ export default function Dishes() {
       <div className="section-head">
         <h1>Dishes</h1>
         <p className="muted">
-          {count} of {MAX_DISHES} dishes chosen for this week
+          {count} of {MAX_DISHES} dishes chosen for {weekWords}
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export default function Dishes() {
                   onClick={() => toggleDish(dish.id)}
                   aria-pressed={selected}
                 >
-                  {selected ? '✓ Eat this week' : 'Eat this week'}
+                  {selected ? `✓ Eat ${weekWords}` : `Eat ${weekWords}`}
                 </button>
                 <Link className="btn small-btn" to={`/dishes/${dish.id}`}>
                   More details
@@ -63,7 +63,7 @@ export default function Dishes() {
           </p>
         )}
         {count === 0 && (
-          <p className="muted">Choose some dishes for this week first.</p>
+          <p className="muted">Choose some dishes for {weekWords} first.</p>
         )}
         <button
           type="button"

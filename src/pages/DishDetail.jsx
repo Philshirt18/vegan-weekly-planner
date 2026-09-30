@@ -9,9 +9,9 @@ import { cookAmount, formatPortions } from '../lib/recipe.js'
 export default function DishDetail() {
   const { id } = useParams()
   const dish = getDish(id)
-  const { data, selectedDishIds, toggleDish } = useAppState()
+  const { members, selectedDishIds, toggleDish, weekWords } = useAppState()
   // Starting value of the portion picker: the family's portions (children up to 12 count half).
-  const familyPortions = totalPortions(data.members) || 1
+  const familyPortions = totalPortions(members) || 1
   const [portions, setPortions] = useState(familyPortions)
 
   if (!dish) {
@@ -38,7 +38,7 @@ export default function DishDetail() {
         onClick={() => toggleDish(dish.id)}
         aria-pressed={selected}
       >
-        {selected ? '✓ Eat this week' : 'Eat this week'}
+        {selected ? `✓ Eat ${weekWords}` : `Eat ${weekWords}`}
       </button>
 
       {dish.calciumRich && (

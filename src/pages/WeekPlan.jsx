@@ -46,9 +46,9 @@ function Slot({ day, meal, dishId }) {
 }
 
 export default function WeekPlan() {
-  const { data, update } = useAppState()
+  const { week, updateWeek } = useAppState()
   const [dismissed, setDismissed] = useState([])
-  const plan = data.plan
+  const plan = week.plan
   // The handle only reacts after a few pixels of movement, so a tap does not count as a drag.
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
@@ -59,7 +59,7 @@ export default function WeekPlan() {
     if (!over || active.id === over.id) return
     const [fromDay, fromMeal] = String(active.id).split(':')
     const [toDay, toMeal] = String(over.id).split(':')
-    update({ plan: swapSlots(plan, { day: fromDay, meal: fromMeal }, { day: toDay, meal: toMeal }) })
+    updateWeek({ plan: swapSlots(plan, { day: fromDay, meal: fromMeal }, { day: toDay, meal: toMeal }) })
     setDismissed([]) // after a change, everything is checked again
   }
 

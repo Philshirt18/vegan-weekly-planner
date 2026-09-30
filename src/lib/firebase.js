@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth'
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import { getFirestore, doc, getDoc, setDoc, updateDoc, FieldPath } from 'firebase/firestore'
 
 // The access values come from .env.local (see .env.example) and never from the code.
 const config = {
@@ -43,14 +43,18 @@ export const signOutUser = () => signOut(auth)
 
 const userDoc = (uid) => doc(db, 'users', uid)
 
+// Reads the user's entry. A brand-new user gets an empty entry, so later saves can update it.
 export async function loadUserData(uid) {
   const snap = await getDoc(userDoc(uid))
-  return snap.exists() ? snap.data() : null
+  if (snap.exists()) return snap.data()
+  await setDoc(userDoc(uid), { members: [], weeks: {} })
+  return null
 }
 
-export function saveUserData(uid, patch) {
-  return setDoc(userDoc(uid), patch, { merge: true })
-}
+// updateDoc REPLACES the given field. (setDoc with merge would merge objects, so a cleared
+// plan would come back after reloading.)
+export const saveMembers = (uid, members) => updateDoc(userDoc(uid), 'members', members)
+export const saveWeek = (uid, weekKey, week) => updateDoc(userDoc(uid), new FieldPath('weeks', weekKey), week)
 
 // Friendly messages for the most common sign-in errors.
 export function authErrorMessage(error) {

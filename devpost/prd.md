@@ -9,6 +9,8 @@ An app that plans the week for a vegan family: from 17 dishes that are balanced 
 Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > What "Working" Looks Like`.
 
 ## The Core Journey
+Every step from choosing dishes to the shopping list belongs to one **week**. A week switcher at the top ("This week", "Next week", arrows for more) chooses which week you are planning; every week has its own dishes, plan and shopping list, so you can plan next week while this week is still running.
+
 1. On first opening, you see a short **welcome screen** that briefly describes what the app does. (`scope.md > The Core Loop`)
 2. Then you **sign in** (email and password) and come to the **family profile**: you add each family member (name, sex, age, weight, field for pregnancy/breastfeeding). A note says that all values are guidelines for orientation, not medical advice.
 3. Next comes the **dishes overview** with the 17 demo dishes (photo, name and the buttons "Eat this week" and "More details"). A button "Add another dish" is there but does nothing in the demo.
@@ -23,6 +25,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 - **Welcome screen:** a short text about what the app does, a button to continue.
 - **Sign-in:** email and password, with "create account".
 - **Family profile:** a list of the people added and a form to add one (name, sex, age, weight, pregnancy/breastfeeding) with the note "not medical advice". A button leads to the dishes overview.
+- **Week switcher:** shown at the top of the dishes, detail, week plan and shopping pages: previous/next arrows, the name of the week (This week, Next week, Last week, Week of …) with its dates, and a link back to this week. You can go from last week up to 8 weeks ahead.
 - **Dishes overview:** grid of cards for 17 dishes, each with photo, name, a button "Eat this week" (choose directly) and a button "More details". A marker shows which dishes are chosen for this week. Button "Add another dish" (without function in the demo).
 - **Detail view:** from top to bottom photo with name, focus label, nutrition, ingredients (with portion picker), method. Plus the choice "Eat this week".
 - **Choose days:** appears only when fewer than 14 dishes are chosen; days of the week to click.
@@ -56,6 +59,15 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
   - [ ] In the detail view, the portions for the recipe can be chosen in half steps (starting value: the family's portions). The ingredient amounts in the recipe recalculate; the shopping list stays with the family.
   - [ ] The dish can be selected and deselected; the overview shows what is chosen.
   - [ ] "Add another dish" is visible but has no function.
+
+### Weeks
+- The app knows which calendar week you are looking at. It starts on this week and remembers the week you were viewing while the browser tab stays open.
+- Every week has its own chosen dishes, days, week plan, shopping list and ticks. Changing the week shows that week's data; nothing is mixed between weeks.
+- Labels adapt: "Eat this week" becomes "Eat next week" and so on.
+  - [ ] The week switcher shows "This week" with its dates when the app opens, and "Next week" after one step forward.
+  - [ ] Dishes chosen for next week do not appear as chosen in this week, and the other way round.
+  - [ ] Going back to a week shows its plan, shopping list and ticks unchanged.
+  - [ ] A week without a plan sends the user back to choosing dishes instead of showing an empty plan.
 
 ### Week plan
 - A full week = 14 dishes (7 days × lunch and dinner).
@@ -104,6 +116,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 - Amounts are scaled to the family and identical ingredients added — the shopping list should be usable directly.
 - The app remembers the family and the plan — coming back without entering everything again.
 - Login with email and password (Firebase) so that phone and computer show the same data.
+- Separate weeks, one shopping list per week (decided by the user): a week switcher lets the user plan next week while this week is running; a single combined list for several weeks was not chosen.
 - The whole app is in English (decided by the user after the first builds).
 
 ## What We're Building
@@ -116,7 +129,8 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 - Day selection when fewer than 14 dishes, and a note when the number does not fit
 - Week plan with spreading, drag and drop and a note for two calcium-rich dishes on the same day
 - Shopping list with categories, scaled and added-up amounts, ticking off and a final list
-- Saving the family, plan and ticked items between visits
+- Week switcher with separate weeks (last week up to 8 weeks ahead), each with its own dishes, plan and shopping list
+- Saving the family, plans and ticked items between visits
 
 ## Deferred From the POC
 - Adding or editing dishes yourself — the button is only a placeholder.

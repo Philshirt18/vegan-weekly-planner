@@ -4,18 +4,18 @@ import { useAppState } from '../lib/AppState.jsx'
 import { buildShoppingList, withoutChecked } from '../lib/shopping.js'
 
 export default function Shopping() {
-  const { data, update } = useAppState()
+  const { week, members, updateWeek } = useAppState()
   const [stage, setStage] = useState('preview') // 'preview' = tick off what you have, 'final' = finished list
 
-  if (!data.plan || Object.keys(data.plan).length === 0) return <Navigate to="/dishes" replace />
+  if (!week.plan || Object.keys(week.plan).length === 0) return <Navigate to="/dishes" replace />
 
-  const groups = buildShoppingList(data.plan, data.members)
-  const checked = data.checkedIngredients
-  const bought = data.boughtIngredients
-  const toggleList = (field, list) => (key) =>
-    update({ [field]: list.includes(key) ? list.filter((k) => k !== key) : [...list, key] })
-  const toggle = toggleList('checkedIngredients', checked) // preview: already at home
-  const toggleBought = toggleList('boughtIngredients', bought) // final list: in the cart
+  const groups = buildShoppingList(week.plan, members)
+  const checked = week.checkedIngredients
+  const bought = week.boughtIngredients
+  const toggleIn = (field) => (key) =>
+    updateWeek((w) => ({ [field]: w[field].includes(key) ? w[field].filter((k) => k !== key) : [...w[field], key] }))
+  const toggle = toggleIn('checkedIngredients') // preview: already at home
+  const toggleBought = toggleIn('boughtIngredients') // final list: in the cart
 
   if (stage === 'final') {
     const missing = withoutChecked(groups, checked)

@@ -188,3 +188,10 @@ code { background: var(--sage-soft); border-radius: 8px; padding: 1px 6px; }
 }
 .step-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .step-btn:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 2px; }
+
+.week-switcher {
+  display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--pill);
+  padding: 6px 10px; margin: 0 auto 18px; width: fit-content; max-width: 100%;
+}
+.week-name { display: flex; flex-direction: column; align-items: center; min-width: 9rem; line-height: 1.2; }

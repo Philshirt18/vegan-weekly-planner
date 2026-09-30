@@ -4,7 +4,7 @@ import { useAppState } from '../lib/AppState.jsx'
 import { isConfigured, signIn, signUp, authErrorMessage } from '../lib/firebase.js'
 
 export default function Login() {
-  const { user, data } = useAppState()
+  const { user, members } = useAppState()
   const navigate = useNavigate()
   const [mode, setMode] = useState('login') // 'login' or 'register'
   const [email, setEmail] = useState('')
@@ -12,7 +12,7 @@ export default function Login() {
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
-  if (user) return <Navigate to={data.members.length ? '/dishes' : '/profile'} replace />
+  if (user) return <Navigate to={members.length ? '/dishes' : '/profile'} replace />
 
   const submit = async (e) => {
     e.preventDefault()

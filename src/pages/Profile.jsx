@@ -8,7 +8,7 @@ const STATUS_LABEL = { none: 'None', pregnant: 'Pregnant', breastfeeding: 'Breas
 const EMPTY_FORM = { name: '', sex: 'female', age: '', weightKg: '', status: 'none' }
 
 export default function Profile() {
-  const { data, update } = useAppState()
+  const { members, updateMembers } = useAppState()
   const [form, setForm] = useState(EMPTY_FORM)
   const [error, setError] = useState('')
 
@@ -23,24 +23,22 @@ export default function Profile() {
     if (!Number.isFinite(weightKg) || weightKg < 5 || weightKg > 250) return setError('Please enter a weight between 5 and 250 kg.')
     setError('')
     const status = form.sex === 'male' ? 'none' : form.status
-    update({
-      members: [...data.members, { id: crypto.randomUUID(), name: form.name.trim(), sex: form.sex, age, weightKg, status }],
-    })
+    updateMembers([...members, { id: crypto.randomUUID(), name: form.name.trim(), sex: form.sex, age, weightKg, status }])
     setForm(EMPTY_FORM)
   }
 
-  const remove = (id) => update({ members: data.members.filter((m) => m.id !== id) })
+  const remove = (id) => updateMembers(members.filter((m) => m.id !== id))
 
   return (
     <section>
       <h1>Your family</h1>
       <p className="notice">{DISCLAIMER}</p>
 
-      {data.members.length === 0 ? (
+      {members.length === 0 ? (
         <p className="muted">Nobody added yet. Enter the first person below.</p>
       ) : (
         <ul className="members">
-          {data.members.map((m) => {
+          {members.map((m) => {
             const t = getTargets(m)
             return (
               <li key={m.id} className="card member">
@@ -88,7 +86,7 @@ export default function Profile() {
         <button className="btn primary" type="submit">Add</button>
       </form>
 
-      {data.members.length > 0 && (
+      {members.length > 0 && (
         <div className="actions">
           <Link className="btn primary" to="/dishes">Continue to the dishes</Link>
         </div>

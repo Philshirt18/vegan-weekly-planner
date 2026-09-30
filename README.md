@@ -22,7 +22,9 @@ skills: see [`devpost/scope.md`](devpost/scope.md), [`devpost/prd.md`](devpost/p
 5. Shopping list: scaled to the family (children up to 12 count as half a portion), identical ingredients added up,
    sorted by category. Tick off what you already have at home.
 
-Family, selection, plan and ticked items are saved in Firebase and are the same on phone and computer.
+Every week has its own dishes, plan and shopping list; a week switcher (this week, next week …) lets you plan ahead.
+
+Family, selection, plans and ticked items are saved in Firebase and are the same on phone and computer.
 
 ## Run it yourself
 
