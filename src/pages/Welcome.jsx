@@ -6,14 +6,14 @@ export default function Welcome() {
 
   return (
     <section className="card welcome">
-      <h1>Willkommen!</h1>
+      <h1>Welcome!</h1>
       <p>
-        Dieser Wochenplaner ist für vegane Familien gemacht. Du wählst Gerichte aus, die alle
-        schon nährstoffmäßig abgestimmt sind, und die App verteilt sie auf deine Woche –
-        mit Hinweis, wenn zwei kalziumreiche Gerichte am selben Tag landen.
+        This weekly planner is made for vegan families. You pick dishes that are already balanced
+        for nutrients, and the app spreads them over your week – with a note about iron absorption
+        when two calcium-rich dishes land on the same day.
       </p>
-      <p>Am Ende bekommst du eine Einkaufsliste, umgerechnet auf deine Familie.</p>
-      <Link className="btn primary" to={user ? '/gerichte' : '/login'}>Los geht's</Link>
+      <p>At the end you get a shopping list, scaled to your family.</p>
+      <Link className="btn primary" to={user ? '/dishes' : '/login'}>Let's go</Link>
     </section>
   )
 }

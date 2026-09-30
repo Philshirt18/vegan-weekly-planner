@@ -11,15 +11,15 @@ function DishCell({ dishId }) {
   const dish = getDish(dishId)
   if (!dish) return <span className="muted">–</span>
   return (
-    <Link to={`/gerichte/${dish.id}`} className="plan-dish">
+    <Link to={`/dishes/${dish.id}`} className="plan-dish">
       {dish.name}
-      {dish.calciumRich && <span className="mini-tag">Kalzium</span>}
-      {dish.ironRich && <span className="mini-tag">Eisen</span>}
+      {dish.calciumRich && <span className="mini-tag">Calcium</span>}
+      {dish.ironRich && <span className="mini-tag">Iron</span>}
     </Link>
   )
 }
 
-// Ein Platz im Plan: Er nimmt ein Gericht auf (Ablegen) und lässt es am Griff ziehen.
+// A slot in the plan: it takes a dish (drop) and lets it be dragged by the handle.
 function Slot({ day, meal, dishId }) {
   const id = slotId(day, meal)
   const { setNodeRef: dropRef, isOver } = useDroppable({ id })
@@ -33,7 +33,7 @@ function Slot({ day, meal, dishId }) {
         <button
           type="button"
           className="drag-handle"
-          aria-label={`${MEAL_LABEL[meal]} am ${dayLabel(day)} verschieben`}
+          aria-label={`Move ${MEAL_LABEL[meal].toLowerCase()} on ${dayLabel(day)}`}
           {...listeners}
           {...attributes}
         >
@@ -49,7 +49,7 @@ export default function WeekPlan() {
   const { data, update } = useAppState()
   const [dismissed, setDismissed] = useState([])
   const plan = data.plan
-  // Der Griff reagiert erst nach ein paar Pixeln Bewegung, damit ein Antippen nicht als Ziehen zählt.
+  // The handle only reacts after a few pixels of movement, so a tap does not count as a drag.
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 6 } }),
     useSensor(KeyboardSensor),
@@ -60,10 +60,10 @@ export default function WeekPlan() {
     const [fromDay, fromMeal] = String(active.id).split(':')
     const [toDay, toMeal] = String(over.id).split(':')
     update({ plan: swapSlots(plan, { day: fromDay, meal: fromMeal }, { day: toDay, meal: toMeal }) })
-    setDismissed([]) // nach einer Änderung wird neu geprüft
+    setDismissed([]) // after a change, everything is checked again
   }
 
-  if (!plan || Object.keys(plan).length === 0) return <Navigate to="/gerichte" replace />
+  if (!plan || Object.keys(plan).length === 0) return <Navigate to="/dishes" replace />
 
   const days = sortDays(Object.keys(plan))
   const warned = calciumWarnings(plan).filter((d) => !dismissed.includes(d))
@@ -71,8 +71,8 @@ export default function WeekPlan() {
   return (
     <section>
       <div className="section-head">
-        <h1>Dein Wochenplan</h1>
-        <p className="muted">Tippe auf ein Gericht für Details und Rezept. Mit dem Griff ⠿ verschiebst du es an einen anderen Platz.</p>
+        <h1>Your week plan</h1>
+        <p className="muted">Tap a dish for details and the recipe. Use the handle ⠿ to move it to another slot.</p>
       </div>
 
       <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
@@ -86,12 +86,12 @@ export default function WeekPlan() {
             {warned.includes(day) && (
               <div className="notice warn" role="alert">
                 <p>
-                  Mittag- und Abendessen sind an diesem Tag beide kalziumreich. Viel Kalzium in
-                  einer Mahlzeit kann die Eisenaufnahme hemmen – vielleicht tauschst du eines gegen
-                  ein eisenreiches Gericht.
+                  Lunch and dinner are both high in calcium on this day. A lot of calcium in one
+                  meal can reduce iron absorption – you could swap one of them for a dish that is
+                  high in iron.
                 </p>
                 <button type="button" className="btn small-btn" onClick={() => setDismissed([...dismissed, day])}>
-                  Trotzdem so lassen
+                  Keep it anyway
                 </button>
               </div>
             )}
@@ -101,8 +101,8 @@ export default function WeekPlan() {
       </DndContext>
 
       <div className="actions">
-        <Link className="btn" to="/gerichte">Gerichte ändern</Link>{' '}
-        <Link className="btn primary" to="/einkauf">Fertig</Link>
+        <Link className="btn" to="/dishes">Change dishes</Link>{' '}
+        <Link className="btn primary" to="/shopping">Done</Link>
       </div>
     </section>
   )

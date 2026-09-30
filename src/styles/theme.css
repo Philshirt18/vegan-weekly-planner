@@ -164,7 +164,7 @@ code { background: var(--sage-soft); border-radius: 8px; padding: 1px 6px; }
 .drag-handle {
   flex: none; width: 36px; height: 36px; border-radius: var(--pill); border: 1px solid var(--border);
   background: var(--surface); color: var(--brown-soft); font-size: 1.1rem; cursor: grab;
-  touch-action: none; /* damit das Ziehen am Handy nicht die Seite scrollt */
+  touch-action: none; /* so dragging on a phone does not scroll the page */
 }
 .drag-handle:active { cursor: grabbing; }
 .drag-handle:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 2px; }

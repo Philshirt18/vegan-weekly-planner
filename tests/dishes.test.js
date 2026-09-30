@@ -20,7 +20,7 @@ describe('dishes', () => {
       for (const i of d.ingredients) {
         expect(i.amount).toBeGreaterThan(0)
         expect(CATEGORIES).toContain(i.category)
-        expect(INGREDIENTS[i.name], `Nährwerte für ${i.name}`).toBeDefined()
+        expect(INGREDIENTS[i.name], `nutrition data for ${i.name}`).toBeDefined()
       }
     }
   })
@@ -59,19 +59,19 @@ describe('dishes', () => {
 
 describe('computeNutrients', () => {
   it('computes from amounts: 100 g red lentils', () => {
-    const n = computeNutrients([{ name: 'Rote Linsen', amount: 100, unit: 'g' }])
+    const n = computeNutrients([{ name: 'Red lentils', amount: 100, unit: 'g' }])
     expect(n.protein).toBe(24)
     expect(n.iron).toBe(7.5)
   })
 
   it('converts pieces and spoons to grams', () => {
-    expect(ingredientGrams({ name: 'Karotte', amount: 2, unit: 'Stück' })).toBe(160)
-    expect(ingredientGrams({ name: 'Tahini', amount: 2, unit: 'EL' })).toBe(30)
+    expect(ingredientGrams({ name: 'Carrot', amount: 2, unit: 'pc' })).toBe(160)
+    expect(ingredientGrams({ name: 'Tahini', amount: 2, unit: 'tbsp' })).toBe(30)
   })
 
   it('reduces vitamin C for cooking', () => {
-    const n = computeNutrients([{ name: 'Paprika', amount: 100, unit: 'g' }])
-    expect(n.vitaminC).toBe(85) // 120 mg * 0,7 = 84, auf 5 gerundet
+    const n = computeNutrients([{ name: 'Bell pepper', amount: 100, unit: 'g' }])
+    expect(n.vitaminC).toBe(85) // 120 mg * 0.7 = 84, rounded to 5
   })
 
   it('labels calcium-rich dishes and excludes iron-rich from them', () => {

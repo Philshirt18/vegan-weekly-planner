@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react'
 import { watchAuth, loadUserData, saveUserData } from './firebase.js'
+import { getDish } from '../data/dishes.js'
 
-// Zentraler Zustand der App. Persönliche Daten liegen in Firestore unter users/{uid}
-// und werden bei jeder Änderung gespeichert.
+// Central state of the app. Personal data lives in Firestore under users/{uid}
+// and is saved on every change.
 const EMPTY = {
   members: [],
   selectedDishIds: [],
@@ -11,10 +12,19 @@ const EMPTY = {
   checkedIngredients: [],
 }
 
+// Drops saved dish ids that no longer exist (for example after dishes were renamed),
+// and discards a saved plan that refers to them.
+function cleanStored(stored) {
+  const selectedDishIds = (stored.selectedDishIds ?? []).filter((id) => getDish(id))
+  const planIds = Object.values(stored.plan ?? {}).flatMap((d) => [d.lunch, d.dinner]).filter(Boolean)
+  const planOk = planIds.every((id) => getDish(id))
+  return { ...stored, selectedDishIds, plan: planOk ? stored.plan : {} }
+}
+
 const AppStateContext = createContext(null)
 
 export function AppStateProvider({ children }) {
-  const [user, setUser] = useState(undefined) // undefined = wird noch geprüft
+  const [user, setUser] = useState(undefined) // undefined = still being checked
   const [data, setData] = useState(EMPTY)
   const [loadError, setLoadError] = useState('')
   const [saveError, setSaveError] = useState('')
@@ -30,30 +40,30 @@ export function AppStateProvider({ children }) {
       }
       try {
         const stored = await loadUserData(u.uid)
-        setData({ ...EMPTY, ...(stored || {}) })
+        setData({ ...EMPTY, ...cleanStored(stored || {}) })
       } catch {
-        setLoadError('Die Daten konnten nicht geladen werden. Bitte lade die Seite neu.')
+        setLoadError('Your data could not be loaded. Please reload the page.')
         setData(EMPTY)
       }
       setUser(u)
     })
   }, [])
 
-  // Ändert Daten sofort auf dem Bildschirm und speichert sie danach in Firestore.
+  // Changes data on screen immediately and then saves it to Firestore.
   const update = useCallback(
     (patch) => {
       setData((d) => ({ ...d, ...patch }))
       if (!user) return
       saveUserData(user.uid, patch).then(
         () => setSaveError(''),
-        () => setSaveError('Speichern hat nicht geklappt. Bitte prüfe deine Verbindung.'),
+        () => setSaveError('Saving did not work. Please check your connection.'),
       )
     },
     [user],
   )
 
   const toggleDish = (id) =>
-    // Ändert sich die Auswahl, passt der bisherige Wochenplan nicht mehr und wird verworfen.
+    // If the selection changes, the previous week plan no longer fits and is discarded.
     update({
       selectedDishIds: data.selectedDishIds.includes(id)
         ? data.selectedDishIds.filter((x) => x !== id)
@@ -67,6 +77,6 @@ export function AppStateProvider({ children }) {
 
 export function useAppState() {
   const value = useContext(AppStateContext)
-  if (!value) throw new Error('useAppState muss innerhalb von AppStateProvider genutzt werden')
+  if (!value) throw new Error('useAppState must be used inside AppStateProvider')
   return value
 }

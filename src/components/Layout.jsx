@@ -15,15 +15,15 @@ export default function Layout({ children }) {
     <div className="app">
       <header className="topbar">
         <Link to="/" className="brand">
-          <span className="brand-leaf" aria-hidden="true">🌿</span> Veganer Wochenplaner
+          <span className="brand-leaf" aria-hidden="true">🌿</span> Vegan Weekly Planner
         </Link>
         {user && (
           <nav className="nav">
-            <Link to="/profil">Familie</Link>
-            <Link to="/gerichte">Gerichte</Link>
-            <Link to="/woche">Wochenplan</Link>
-            <Link to="/einkauf">Einkauf</Link>
-            <button type="button" className="link-btn" onClick={logout}>Abmelden</button>
+            <Link to="/profile">Family</Link>
+            <Link to="/dishes">Dishes</Link>
+            <Link to="/week">Week plan</Link>
+            <Link to="/shopping">Shopping</Link>
+            <button type="button" className="link-btn" onClick={logout}>Sign out</button>
           </nav>
         )}
       </header>
@@ -32,7 +32,7 @@ export default function Layout({ children }) {
         {children}
       </main>
       <footer className="footer">
-        Alle Nährwerte sind Richtwerte und eine Orientierung – keine medizinische Beratung.
+        All nutrition values are guidelines for orientation – not medical advice.
       </footer>
     </div>
   )

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-// Zeigt das Bild eines Gerichts. Fehlt es, erscheint ein sanfter Platzhalter mit dem Namen.
+// Shows the picture of a dish. If it is missing, a soft placeholder appears.
 export default function DishImage({ dish, className = '' }) {
   const [failed, setFailed] = useState(false)
 

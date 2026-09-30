@@ -1,81 +1,80 @@
-# Veganer Nährstoff-Wochenplaner
+# Vegan Weekly Planner
 
-**English summary:** A weekly meal planner for vegan families. Pick from 17 vegan dishes (with nutrients computed from
-their ingredients), let the app spread them over lunch and dinner, get a note about iron absorption when two
-calcium-rich dishes land on the same day, drag dishes to swap them, and get a shopping list scaled to your family.
-Built with React, Vite and Firebase (login + database), hosted on Vercel. Nutrition values are approximate guidelines,
-not medical advice. This project was planned with the Devpost Learn skills; see `devpost/scope.md`, `devpost/prd.md`
-and `devpost/spec.md`.
+A weekly meal planner for vegan families. Pick from 17 vegan dishes (nutrition computed from their ingredients), let the
+app spread them over lunch and dinner, get a note about iron absorption when two calcium-rich dishes land on the same
+day, swap dishes by drag and drop, and get a shopping list scaled to your family.
 
-Eine Web-App, die einer veganen Familie die Woche plant – mit Rezepten, einer Warnung zur Eisenaufnahme und einer
-Einkaufsliste, die auf die Familie umgerechnet ist.
+> **Note:** All nutrition values are approximations and guideline values for orientation. They are **not medical advice**.
 
-> **Hinweis:** Alle Nährwerte sind Näherungswerte und Richtwerte zur Orientierung. Sie sind **keine medizinische Beratung**.
+Built with React, Vite and Firebase (login + database), hosted on Vercel. This project was planned with the Devpost Learn
+skills: see [`devpost/scope.md`](devpost/scope.md), [`devpost/prd.md`](devpost/prd.md) and
+[`devpost/spec.md`](devpost/spec.md).
 
-## Was die App kann
+## What the app does
 
-1. Anmelden (E-Mail und Passwort) und die Familie anlegen (Name, Geschlecht, Alter, Gewicht, Schwangerschaft/Stillzeit).
-   Daraus entstehen Tagesrichtwerte für Protein, Kalzium und Eisen (nach den DGE-Referenzwerten).
-2. Aus 17 veganen Gerichten (Foto, Nährstoffe, Zutaten, Anleitung mit Portionswahl) bis zu 14 für die Woche wählen.
-3. Die App verteilt die Gerichte auf Mittag- und Abendessen der gewählten Tage. Sind an einem Tag beide Gerichte
-   kalziumreich, gibt es einen Hinweis zur Eisenaufnahme.
-4. Gerichte per Drag und Drop tauschen.
-5. Einkaufsliste: für die Familie umgerechnet (Kinder bis 12 Jahre zählen als halbe Portion), gleiche Zutaten
-   zusammengezählt, nach Kategorien sortiert. Abhaken, was schon da ist.
+1. Sign in (email and password) and add your family (name, sex, age, weight, pregnancy/breastfeeding). From this the app
+   shows daily guideline values for protein, calcium and iron (based on the DGE reference values).
+2. Choose up to 14 of the 17 vegan dishes for the week. Each dish has a photo, nutrition, ingredients and a method, with
+   a portion picker for cooking.
+3. The app spreads the dishes over lunch and dinner of the days you choose. If both dishes of a day are high in calcium,
+   you get a note about iron absorption.
+4. Swap dishes by drag and drop.
+5. Shopping list: scaled to the family (children up to 12 count as half a portion), identical ingredients added up,
+   sorted by category. Tick off what you already have at home.
 
-Familie, Auswahl, Plan und Abgehaktes werden in Firebase gespeichert und sind auf Handy und Computer dieselben.
+Family, selection, plan and ticked items are saved in Firebase and are the same on phone and computer.
 
-## Selbst starten
+## Run it yourself
 
-Voraussetzungen: Node.js und ein eigenes Firebase-Projekt.
+Requirements: Node.js and your own Firebase project.
 
 ```bash
 npm install
-cp .env.example .env.local   # dann die Firebase-Werte eintragen
-npm run dev                  # danach http://localhost:5173 öffnen
+cp .env.example .env.local   # then fill in the Firebase values
+npm run dev                  # then open http://localhost:5173
 ```
 
-Tests und Build:
+Tests and build:
 
 ```bash
 npm test
 npm run build
 ```
 
-### Firebase einrichten
+### Set up Firebase
 
-1. Auf [console.firebase.google.com](https://console.firebase.google.com) ein Projekt anlegen.
-2. Eine **Web-App** registrieren (ohne Firebase Hosting). Die sechs Werte aus `firebaseConfig` in `.env.local` eintragen
-   (Namen siehe `.env.example`).
-3. **Authentication** → Anmeldemethode **E-Mail/Passwort** aktivieren.
-4. **Firestore Database** anlegen (Produktionsmodus) und die Regeln aus [`firestore.rules`](firestore.rules) einfügen.
-   Sie erlauben jeder angemeldeten Person nur ihren eigenen Eintrag.
+1. Create a project at [console.firebase.google.com](https://console.firebase.google.com).
+2. Register a **web app** (without Firebase Hosting). Copy the six values from `firebaseConfig` into `.env.local`
+   (names in `.env.example`).
+3. **Authentication** → enable the **Email/Password** sign-in method.
+4. Create a **Firestore Database** (production mode) and paste the rules from [`firestore.rules`](firestore.rules).
+   They let every signed-in person read and write only their own entry.
 
-Die Zugangswerte gehören **nur** in `.env.local` (wird nicht committet) und in die Vercel-Einstellungen, nie in den Code.
+The access values belong **only** in `.env.local` (not committed) and in the Vercel settings, never in the code.
 
-### Veröffentlichen mit Vercel
+### Publish with Vercel
 
-1. Das Repository mit [Vercel](https://vercel.com) verbinden (Framework: Vite, Build `npm run build`, Ausgabe `dist`).
-2. In den Vercel-Projekteinstellungen unter **Environment Variables** die sechs `VITE_FIREBASE_…`-Werte eintragen.
-3. In Firebase unter **Authentication → Einstellungen → Autorisierte Domains** die Vercel-Adresse hinzufügen.
+1. Connect the repository to [Vercel](https://vercel.com) (framework: Vite, build `npm run build`, output `dist`).
+2. In the Vercel project settings under **Environment Variables**, add the six `VITE_FIREBASE_…` values.
+3. In Firebase under **Authentication → Settings → Authorized domains**, add the Vercel address.
 
-## Aufbau
+## Structure
 
 ```
 src/
-  pages/        Bildschirme (Willkommen, Anmeldung, Profil, Gerichte, Detail, Tage, Wochenplan, Einkauf)
-  components/   Wiederverwendete Teile
-  data/         17 Gerichte und die Nährwerte je Zutat (Näherungswerte)
-  lib/          Rechenlogik: Richtwerte, Nährwerte, Wochenplan, Einkaufsliste, Rezeptmengen, Firebase
-  styles/       Look (Farben, Schrift, runde Formen)
-tests/          Tests der Rechenlogik
-devpost/        Planungsdokumente (scope, prd, spec) und Build-Checkliste
+  pages/        Screens (welcome, sign-in, profile, dishes, detail, days, week plan, shopping)
+  components/   Reusable pieces
+  data/         The 17 dishes and the nutrition per ingredient (approximate values)
+  lib/          Logic: guideline values, dish nutrition, week plan, shopping list, recipe amounts, Firebase
+  styles/       Look (colours, font, rounded shapes)
+tests/          Tests of the logic
+devpost/        Planning documents (scope, prd, spec) and the build checklist
 ```
 
-## Bekannte Grenzen
+## Known limits
 
-- Die Nährwerte pro Zutat sind typische Näherungswerte für rohe Zutaten, keine geprüfte Datenbank.
-  Beim Tofu ist ohne Angabe auf der Packung ein Kalziumwert von 200 mg pro 100 g angenommen.
-- Bilder der Gerichte: Solange keine Bilder in `public/images/` liegen (`<gericht-id>.jpg`), zeigt die App Platzhalter.
-- Gerichte selbst hinzufügen oder bearbeiten, andere Ernährungsformen und weitere Nährstoffe (zum Beispiel Vitamin B12)
-  sind nicht Teil dieser Demo.
+- The nutrition per ingredient consists of typical approximate values for raw ingredients, not a verified database.
+  For tofu without a label, a calcium value of 200 mg per 100 g is assumed.
+- Dish photos: as long as no pictures are in `public/images/` (`<dish-id>.jpg`), the app shows placeholders.
+- Adding or editing your own dishes, other diets and further nutrients (for example vitamin B12) are not part of this
+  demo.

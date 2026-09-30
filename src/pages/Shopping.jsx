@@ -5,9 +5,9 @@ import { buildShoppingList, withoutChecked } from '../lib/shopping.js'
 
 export default function Shopping() {
   const { data, update } = useAppState()
-  const [stage, setStage] = useState('preview') // 'preview' = Vorschau zum Abhaken, 'final' = fertige Liste
+  const [stage, setStage] = useState('preview') // 'preview' = tick off what you have, 'final' = finished list
 
-  if (!data.plan || Object.keys(data.plan).length === 0) return <Navigate to="/gerichte" replace />
+  if (!data.plan || Object.keys(data.plan).length === 0) return <Navigate to="/dishes" replace />
 
   const groups = buildShoppingList(data.plan, data.members)
   const checked = data.checkedIngredients
@@ -19,12 +19,12 @@ export default function Shopping() {
     return (
       <section>
         <div className="section-head">
-          <h1>Deine Einkaufsliste</h1>
-          <p className="muted">Das brauchst du noch für diese Woche.</p>
+          <h1>Your shopping list</h1>
+          <p className="muted">This is what you still need for this week.</p>
         </div>
 
         {missing.length === 0 ? (
-          <p className="card">Du hast schon alles zu Hause – nichts einzukaufen. 🎉</p>
+          <p className="card">You already have everything at home – nothing to buy. 🎉</p>
         ) : (
           <div className="shop-groups">
             {missing.map((g) => (
@@ -41,7 +41,7 @@ export default function Shopping() {
         )}
 
         <div className="actions">
-          <button type="button" className="btn" onClick={() => setStage('preview')}>Zurück zur Vorschau</button>
+          <button type="button" className="btn" onClick={() => setStage('preview')}>Back to the preview</button>
         </div>
       </section>
     )
@@ -50,10 +50,10 @@ export default function Shopping() {
   return (
     <section>
       <div className="section-head">
-        <h1>Vorschau der Einkaufsliste</h1>
+        <h1>Shopping list preview</h1>
         <p className="muted">
-          Alle Zutaten für deinen Wochenplan, umgerechnet auf deine Familie. Hake ab, was du schon
-          zu Hause hast.
+          All ingredients for your week plan, scaled to your family. Tick off what you already
+          have at home.
         </p>
       </div>
 
@@ -77,9 +77,9 @@ export default function Shopping() {
       </div>
 
       <div className="actions">
-        <Link className="btn" to="/woche">Zurück zum Wochenplan</Link>{' '}
+        <Link className="btn" to="/week">Back to the week plan</Link>{' '}
         <button type="button" className="btn primary" onClick={() => setStage('final')}>
-          Einkaufsliste erstellen
+          Create shopping list
         </button>
       </div>
     </section>

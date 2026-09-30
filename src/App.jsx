@@ -16,12 +16,12 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profil" element={<RequireAuth><Profile /></RequireAuth>} />
-        <Route path="/gerichte" element={<RequireAuth><Dishes /></RequireAuth>} />
-        <Route path="/gerichte/:id" element={<RequireAuth><DishDetail /></RequireAuth>} />
-        <Route path="/woche/tage" element={<RequireAuth><PlanDays /></RequireAuth>} />
-        <Route path="/woche" element={<RequireAuth><WeekPlan /></RequireAuth>} />
-        <Route path="/einkauf" element={<RequireAuth><Shopping /></RequireAuth>} />
+        <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
+        <Route path="/dishes" element={<RequireAuth><Dishes /></RequireAuth>} />
+        <Route path="/dishes/:id" element={<RequireAuth><DishDetail /></RequireAuth>} />
+        <Route path="/week/days" element={<RequireAuth><PlanDays /></RequireAuth>} />
+        <Route path="/week" element={<RequireAuth><WeekPlan /></RequireAuth>} />
+        <Route path="/shopping" element={<RequireAuth><Shopping /></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>

@@ -1,19 +1,19 @@
-// Richtwerte pro Person und Tag für Protein, Kalzium und Eisen.
-// Grundlage: Referenzwerte der DGE (D-A-CH), abgerufen am 2026-09-30:
+// Daily guideline values per person for protein, calcium and iron.
+// Basis: reference values of the DGE (German Nutrition Society, D-A-CH), retrieved 2026-09-30:
 //   Protein: https://www.dge.de/wissenschaft/referenzwerte/protein/
-//   Kalzium: https://www.dge.de/wissenschaft/referenzwerte/calcium/
-//   Eisen:   https://www.dge.de/wissenschaft/referenzwerte/eisen/
-// Das sind allgemeine Richtwerte zur Orientierung, keine medizinische Beratung.
+//   Calcium: https://www.dge.de/wissenschaft/referenzwerte/calcium/
+//   Iron:    https://www.dge.de/wissenschaft/referenzwerte/eisen/
+// These are general guideline values for orientation, not medical advice.
 //
-// ZU PRÜFEN: Die Eisenwerte für Kinder ab 10 Jahren (markiert mit "prüfen") waren beim
-// Abruf nicht eindeutig. Gegen das DGE-Referenzwerte-Tool gegenlesen: https://www.dge.de/wissenschaft/referenzwerte-tool/
+// TO CHECK: The iron values for children from 10 years (marked "check") were not clear
+// when retrieved. Compare with the DGE reference value tool: https://www.dge.de/wissenschaft/referenzwerte-tool/
 
-export const DISCLAIMER = 'Richtwerte zur Orientierung – keine medizinische Beratung.'
+export const DISCLAIMER = 'Guideline values for orientation – not medical advice.'
 
 // status: 'none' | 'pregnant' | 'breastfeeding'   sex: 'female' | 'male' | 'diverse'
 
 function proteinPerKg({ age, sex, status }) {
-  if (status === 'pregnant') return 1.0 // 3. Trimester (vorsichtig, da das Trimester nicht abgefragt wird)
+  if (status === 'pregnant') return 1.0 // 3rd trimester (cautious, since the trimester is not asked)
   if (status === 'breastfeeding') return 1.2
   if (age < 1) return 1.3
   if (age < 4) return 1.0
@@ -37,10 +37,10 @@ function calcium({ age, status }) {
 
 function ironFor({ age, sex }) {
   const male = sex === 'male'
-  if (age < 7) return 7 // 1 bis <7 Jahre
+  if (age < 7) return 7 // 1 to <7 years
   if (age < 10) return 10
-  if (age < 13) return male ? 12 : 14 // prüfen
-  if (age < 19) return male ? 11 : 16 // prüfen
+  if (age < 13) return male ? 12 : 14 // check
+  if (age < 19) return male ? 11 : 16 // check
   if (age < 51) return male ? 11 : 16
   return male ? 11 : 14
 }
@@ -54,7 +54,7 @@ function iron({ age, sex, status }) {
   return ironFor({ age, sex })
 }
 
-// Tagesrichtwerte einer Person. weightKg wird nur für Protein gebraucht.
+// Daily guideline values of one person. weightKg is only needed for protein.
 export function getTargets(member) {
   const m = { status: 'none', sex: 'female', ...member }
   const perKg = proteinPerKg(m)
@@ -65,7 +65,7 @@ export function getTargets(member) {
   }
 }
 
-// Portionsfaktor für Einkaufsmengen: bis 12 Jahre eine halbe Portion, sonst eine ganze.
+// Portion factor for shopping quantities: up to 12 years half a portion, otherwise a whole one.
 export function portionFactor(member) {
   return member.age <= 12 ? 0.5 : 1
 }

@@ -11,20 +11,20 @@ export default function Dishes() {
 
   const goToPlan = () => {
     if (count === MAX_DISHES) {
-      // Genau 14 Gerichte füllen die ganze Woche, dann müssen keine Tage gewählt werden.
+      // Exactly 14 dishes fill the whole week, so no days need to be chosen.
       update({ days: ALL_DAY_IDS, plan: distribute(selectedDishIds, ALL_DAY_IDS) })
-      navigate('/woche')
+      navigate('/week')
     } else {
-      navigate('/woche/tage')
+      navigate('/week/days')
     }
   }
 
   return (
     <section>
       <div className="section-head">
-        <h1>Gerichte</h1>
+        <h1>Dishes</h1>
         <p className="muted">
-          {count} von {MAX_DISHES} Gerichten für diese Woche gewählt
+          {count} of {MAX_DISHES} dishes chosen for this week
         </p>
       </div>
 
@@ -33,7 +33,7 @@ export default function Dishes() {
           const selected = selectedDishIds.includes(dish.id)
           return (
             <article key={dish.id} className={`dish-card${selected ? ' selected' : ''}`}>
-              <Link to={`/gerichte/${dish.id}`} className="dish-card-link">
+              <Link to={`/dishes/${dish.id}`} className="dish-card-link">
                 <DishImage dish={dish} />
                 <span className="dish-name">{dish.name}</span>
               </Link>
@@ -44,10 +44,10 @@ export default function Dishes() {
                   onClick={() => toggleDish(dish.id)}
                   aria-pressed={selected}
                 >
-                  {selected ? '✓ Diese Woche essen' : 'Diese Woche essen'}
+                  {selected ? '✓ Eat this week' : 'Eat this week'}
                 </button>
-                <Link className="btn small-btn" to={`/gerichte/${dish.id}`}>
-                  Mehr Details
+                <Link className="btn small-btn" to={`/dishes/${dish.id}`}>
+                  More details
                 </Link>
               </div>
             </article>
@@ -58,12 +58,12 @@ export default function Dishes() {
       <div className="actions">
         {count > MAX_DISHES && (
           <p className="notice warn" role="alert">
-            Eine Woche hat höchstens {MAX_DISHES} Mahlzeiten (Mittag und Abend). Bitte wähle{' '}
-            {count - MAX_DISHES} {count - MAX_DISHES === 1 ? 'Gericht' : 'Gerichte'} ab.
+            A week has at most {MAX_DISHES} meals (lunch and dinner). Please deselect{' '}
+            {count - MAX_DISHES} {count - MAX_DISHES === 1 ? 'dish' : 'dishes'}.
           </p>
         )}
         {count === 0 && (
-          <p className="muted">Wähle zuerst Gerichte für diese Woche aus.</p>
+          <p className="muted">Choose some dishes for this week first.</p>
         )}
         <button
           type="button"
@@ -71,14 +71,14 @@ export default function Dishes() {
           onClick={goToPlan}
           disabled={count === 0 || count > MAX_DISHES}
         >
-          Weiter zum Wochenplan
+          Continue to the week plan
         </button>
       </div>
 
       <div className="actions">
-        {/* Platzhalter: In der Demo hat dieser Button noch keine Funktion. */}
-        <button type="button" className="btn ghost" title="Kommt später">
-          + Weiteres Gericht hinzufügen
+        {/* Placeholder: in the demo this button has no function yet. */}
+        <button type="button" className="btn ghost" title="Coming later">
+          + Add another dish
         </button>
       </div>
     </section>

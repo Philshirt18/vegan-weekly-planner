@@ -1,9 +1,9 @@
 import { INGREDIENTS } from '../data/ingredients.js'
 
-// Beim Kochen geht ein Teil des Vitamin C verloren. Grober Näherungswert.
+// Some vitamin C is lost when cooking. Rough approximation.
 export const VITAMIN_C_RETENTION = 0.7
 
-// Schwellen für die Einstufung eines Gerichts (etwa 30 % des Tagesbedarfs einer erwachsenen Person).
+// Thresholds for classifying a dish (about 30 % of an adult's daily need).
 export const CALCIUM_RICH_MG = 300
 export const IRON_RICH_MG = 5
 export const VITAMIN_C_MIN_FOR_IRON_MG = 30
@@ -12,16 +12,16 @@ export function ingredientGrams(ingredient) {
   const { name, amount, unit } = ingredient
   if (unit === 'g' || unit === 'ml') return amount
   const perUnit = INGREDIENTS[name]?.unitGrams?.[unit]
-  if (perUnit === undefined) throw new Error(`Kein Gewicht für "${name}" in Einheit "${unit}"`)
+  if (perUnit === undefined) throw new Error(`No weight for "${name}" in unit "${unit}"`)
   return amount * perUnit
 }
 
-// Nährwerte einer Erwachsenenportion, berechnet aus den Zutaten.
+// Nutrition of one adult portion, computed from the ingredients.
 export function computeNutrients(ingredients) {
   const total = { protein: 0, calcium: 0, iron: 0, vitaminC: 0 }
   for (const ing of ingredients) {
     const data = INGREDIENTS[ing.name]
-    if (!data) throw new Error(`Keine Nährwerte für "${ing.name}"`)
+    if (!data) throw new Error(`No nutrition data for "${ing.name}"`)
     const grams = ingredientGrams(ing)
     for (const key of Object.keys(total)) total[key] += (data[key] * grams) / 100
   }
@@ -34,9 +34,9 @@ export function computeNutrients(ingredients) {
   }
 }
 
-// Kalziumreich: ab 300 mg Kalzium. Eisenreich: Eisen ab 5 mg UND unter 300 mg Kalzium
-// (ab etwa 300 mg Kalzium in einer Mahlzeit sinkt die Eisenaufnahme merklich).
-// Ein Gericht ist deshalb nie beides.
+// Calcium-rich: from 300 mg calcium. Iron-rich: iron from 5 mg AND under 300 mg calcium
+// (from about 300 mg calcium in one meal, iron absorption drops noticeably).
+// A dish is therefore never both.
 export function classify(nutrients) {
   const calciumRich = nutrients.calcium >= CALCIUM_RICH_MG
   const ironRich = !calciumRich && nutrients.iron >= IRON_RICH_MG

@@ -8,7 +8,7 @@ import {
 } from 'firebase/auth'
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
-// Die Zugangswerte kommen aus .env.local (siehe .env.example) und nie aus dem Code.
+// The access values come from .env.local (see .env.example) and never from the code.
 const config = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
@@ -28,7 +28,7 @@ if (isConfigured) {
   db = getFirestore(app)
 }
 
-// Ruft callback(user) beim Start und bei jeder Anmeldung/Abmeldung auf (user ist null, wenn abgemeldet).
+// Calls callback(user) at start and on every sign-in/sign-out (user is null when signed out).
 export function watchAuth(callback) {
   if (!auth) {
     callback(null)
@@ -52,24 +52,24 @@ export function saveUserData(uid, patch) {
   return setDoc(userDoc(uid), patch, { merge: true })
 }
 
-// Verständliche deutsche Meldungen für die häufigsten Anmeldefehler.
+// Friendly messages for the most common sign-in errors.
 export function authErrorMessage(error) {
   switch (error?.code) {
     case 'auth/invalid-email':
-      return 'Diese E-Mail-Adresse sieht nicht richtig aus.'
+      return 'That email address does not look right.'
     case 'auth/email-already-in-use':
-      return 'Mit dieser E-Mail gibt es schon ein Konto. Bitte melde dich an.'
+      return 'There is already an account with this email. Please sign in.'
     case 'auth/weak-password':
-      return 'Das Passwort ist zu kurz. Bitte mindestens 6 Zeichen.'
+      return 'The password is too short. Please use at least 6 characters.'
     case 'auth/invalid-credential':
     case 'auth/wrong-password':
     case 'auth/user-not-found':
-      return 'E-Mail oder Passwort stimmt nicht.'
+      return 'Email or password is wrong.'
     case 'auth/too-many-requests':
-      return 'Zu viele Versuche. Bitte warte kurz und versuche es später noch einmal.'
+      return 'Too many attempts. Please wait a moment and try again later.'
     case 'auth/network-request-failed':
-      return 'Keine Verbindung. Bitte prüfe dein Internet.'
+      return 'No connection. Please check your internet.'
     default:
-      return 'Das hat nicht geklappt. Bitte versuche es noch einmal.'
+      return 'That did not work. Please try again.'
   }
 }

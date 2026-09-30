@@ -9,7 +9,7 @@ export default function PlanDays() {
   const days = data.days
   const status = countStatus(count, days)
 
-  if (count === 0) return <Navigate to="/gerichte" replace />
+  if (count === 0) return <Navigate to="/dishes" replace />
 
   const toggleDay = (id) => {
     const next = days.includes(id) ? days.filter((d) => d !== id) : sortDays([...days, id])
@@ -18,24 +18,24 @@ export default function PlanDays() {
 
   const createPlan = () => {
     update({ plan: distribute(data.selectedDishIds, days) })
-    navigate('/woche')
+    navigate('/week')
   }
 
   let hint = null
-  if (status.state === 'noDays') hint = 'Wähle die Tage aus, für die du planen möchtest.'
+  if (status.state === 'noDays') hint = 'Choose the days you want to plan for.'
   if (status.state === 'tooFew')
-    hint = `Für ${days.length} Tage brauchst du ${days.length * 2} Gerichte. Dir ${status.missing === 1 ? 'fehlt 1 Gericht' : `fehlen ${status.missing} Gerichte`} – wähle ein Gericht dazu oder einen Tag weniger.`
+    hint = `For ${days.length} ${days.length === 1 ? 'day' : 'days'} you need ${days.length * 2} dishes. You are missing ${status.missing} ${status.missing === 1 ? 'dish' : 'dishes'} – add a dish or plan one day fewer.`
   if (status.state === 'tooMany')
-    hint = `Für ${days.length} Tage passen ${days.length * 2} Gerichte. Du hast ${status.over} ${status.over === 1 ? 'Gericht' : 'Gerichte'} zu viel gewählt – wähle ${status.over === 1 ? 'eins' : 'welche'} ab oder füge einen Tag hinzu.`
+    hint = `${days.length} ${days.length === 1 ? 'day fits' : 'days fit'} ${days.length * 2} dishes. You chose ${status.over} too many – deselect ${status.over === 1 ? 'one' : 'some'} or add a day.`
 
   return (
     <section className="card form-card">
-      <h1>Für welche Tage?</h1>
+      <h1>For which days?</h1>
       <p>
-        Du hast {count} {count === 1 ? 'Gericht' : 'Gerichte'} gewählt – jeder Tag hat ein
-        Mittag- und ein Abendessen. Wähle die Tage aus:
+        You chose {count} {count === 1 ? 'dish' : 'dishes'} – every day has one lunch and one dinner.
+        Choose the days:
       </p>
-      <div className="day-chips" role="group" aria-label="Wochentage">
+      <div className="day-chips" role="group" aria-label="Days of the week">
         {DAYS.map((d) => (
           <button
             key={d.id}
@@ -50,9 +50,9 @@ export default function PlanDays() {
       </div>
       {hint && <p className="notice warn" role="alert">{hint}</p>}
       <div className="row-actions">
-        <Link className="btn" to="/gerichte">Gerichte ändern</Link>
+        <Link className="btn" to="/dishes">Change dishes</Link>
         <button type="button" className="btn primary" onClick={createPlan} disabled={status.state !== 'ok'}>
-          Wochenplan erstellen
+          Create week plan
         </button>
       </div>
     </section>

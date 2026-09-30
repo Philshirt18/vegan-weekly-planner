@@ -1,27 +1,27 @@
 import { getDish } from '../data/dishes.js'
 
 export const DAYS = [
-  { id: 'mon', label: 'Montag', short: 'Mo' },
-  { id: 'tue', label: 'Dienstag', short: 'Di' },
-  { id: 'wed', label: 'Mittwoch', short: 'Mi' },
-  { id: 'thu', label: 'Donnerstag', short: 'Do' },
-  { id: 'fri', label: 'Freitag', short: 'Fr' },
-  { id: 'sat', label: 'Samstag', short: 'Sa' },
-  { id: 'sun', label: 'Sonntag', short: 'So' },
+  { id: 'mon', label: 'Monday', short: 'Mon' },
+  { id: 'tue', label: 'Tuesday', short: 'Tue' },
+  { id: 'wed', label: 'Wednesday', short: 'Wed' },
+  { id: 'thu', label: 'Thursday', short: 'Thu' },
+  { id: 'fri', label: 'Friday', short: 'Fri' },
+  { id: 'sat', label: 'Saturday', short: 'Sat' },
+  { id: 'sun', label: 'Sunday', short: 'Sun' },
 ]
 export const ALL_DAY_IDS = DAYS.map((d) => d.id)
 export const MEALS = ['lunch', 'dinner']
-export const MEAL_LABEL = { lunch: 'Mittagessen', dinner: 'Abendessen' }
-export const MAX_DISHES = 14 // 7 Tage x Mittag und Abend
+export const MEAL_LABEL = { lunch: 'Lunch', dinner: 'Dinner' }
+export const MAX_DISHES = 14 // 7 days x lunch and dinner
 
 const isCalciumRich = (id) => Boolean(getDish(id)?.calciumRich)
 
-// Sortiert Tage in Wochenreihenfolge.
+// Sorts days in week order.
 export const sortDays = (dayIds) => ALL_DAY_IDS.filter((id) => dayIds.includes(id))
 
-// Wie gut passen die gewählten Gerichte zu den gewählten Tagen?
-//  empty: nichts gewählt · tooMany: zu viele für die Woche oder die Tage · tooFew: es fehlen Gerichte
-//  noDays: keine Tage gewählt · ok: passt genau
+// How well do the chosen dishes fit the chosen days?
+//  empty: nothing chosen · tooMany: too many for the week or the days · tooFew: dishes missing
+//  noDays: no days chosen · ok: fits exactly
 export function countStatus(selectedCount, days) {
   if (selectedCount === 0) return { state: 'empty' }
   if (selectedCount > MAX_DISHES) return { state: 'tooMany', over: selectedCount - MAX_DISHES }
@@ -31,8 +31,8 @@ export function countStatus(selectedCount, days) {
   return diff < 0 ? { state: 'tooFew', missing: -diff } : { state: 'tooMany', over: diff }
 }
 
-// Verteilt die gewählten Gerichte auf Mittag und Abend der gewählten Tage.
-// Kalziumreiche Gerichte kommen möglichst auf verschiedene Tage.
+// Spreads the chosen dishes over lunch and dinner of the chosen days.
+// Calcium-rich dishes go on different days where possible.
 export function distribute(selectedIds, days, isCa = isCalciumRich) {
   const dayIds = sortDays(days)
   const plan = Object.fromEntries(dayIds.map((d) => [d, { lunch: null, dinner: null }]))
@@ -54,7 +54,7 @@ export function distribute(selectedIds, days, isCa = isCalciumRich) {
   return plan
 }
 
-// Tage, an denen Mittag- und Abendessen beide kalziumreich sind.
+// Days on which lunch and dinner are both calcium-rich.
 export function calciumWarnings(plan, isCa = isCalciumRich) {
   return sortDays(Object.keys(plan)).filter((d) => {
     const { lunch, dinner } = plan[d]
@@ -62,7 +62,7 @@ export function calciumWarnings(plan, isCa = isCalciumRich) {
   })
 }
 
-// Tauscht die Gerichte zweier Plätze (ein Platz = { day, meal }).
+// Swaps the dishes of two slots (a slot = { day, meal }).
 export function swapSlots(plan, a, b) {
   const next = Object.fromEntries(Object.entries(plan).map(([d, v]) => [d, { ...v }]))
   const tmp = next[a.day][a.meal]

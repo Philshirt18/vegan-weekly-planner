@@ -6,13 +6,13 @@ import { isConfigured, signIn, signUp, authErrorMessage } from '../lib/firebase.
 export default function Login() {
   const { user, data } = useAppState()
   const navigate = useNavigate()
-  const [mode, setMode] = useState('login') // 'login' oder 'register'
+  const [mode, setMode] = useState('login') // 'login' or 'register'
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
 
-  if (user) return <Navigate to={data.members.length ? '/gerichte' : '/profil'} replace />
+  if (user) return <Navigate to={data.members.length ? '/dishes' : '/profile'} replace />
 
   const submit = async (e) => {
     e.preventDefault()
@@ -21,7 +21,7 @@ export default function Login() {
     try {
       if (mode === 'register') await signUp(email.trim(), password)
       else await signIn(email.trim(), password)
-      navigate('/profil')
+      navigate('/profile')
     } catch (err) {
       setError(authErrorMessage(err))
     } finally {
@@ -32,10 +32,10 @@ export default function Login() {
   if (!isConfigured) {
     return (
       <section className="card">
-        <h1>Firebase ist noch nicht eingerichtet</h1>
+        <h1>Firebase is not set up yet</h1>
         <p>
-          Die Anmeldung braucht ein Firebase-Projekt. Trage die Zugangswerte in die Datei
-          <code> .env.local</code> ein (Vorlage: <code>.env.example</code>) und starte die App neu.
+          Signing in needs a Firebase project. Put the access values into the file
+          <code> .env.local</code> (template: <code>.env.example</code>) and restart the app.
         </p>
       </section>
     )
@@ -43,14 +43,14 @@ export default function Login() {
 
   return (
     <section className="card form-card">
-      <h1>{mode === 'login' ? 'Anmelden' : 'Konto erstellen'}</h1>
+      <h1>{mode === 'login' ? 'Sign in' : 'Create account'}</h1>
       <form onSubmit={submit}>
         <label>
-          E-Mail
+          Email
           <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
         </label>
         <label>
-          Passwort
+          Password
           <input
             type="password"
             value={password}
@@ -62,17 +62,17 @@ export default function Login() {
         </label>
         {error && <p className="notice warn" role="alert">{error}</p>}
         <button className="btn primary" type="submit" disabled={busy}>
-          {busy ? 'Einen Moment …' : mode === 'login' ? 'Anmelden' : 'Konto erstellen'}
+          {busy ? 'One moment …' : mode === 'login' ? 'Sign in' : 'Create account'}
         </button>
       </form>
       <p className="muted switch">
-        {mode === 'login' ? 'Noch kein Konto?' : 'Schon ein Konto?'}{' '}
+        {mode === 'login' ? 'No account yet?' : 'Already have an account?'}{' '}
         <button
           type="button"
           className="link-btn"
           onClick={() => { setMode(mode === 'login' ? 'register' : 'login'); setError('') }}
         >
-          {mode === 'login' ? 'Konto erstellen' : 'Anmelden'}
+          {mode === 'login' ? 'Create account' : 'Sign in'}
         </button>
       </p>
     </section>
