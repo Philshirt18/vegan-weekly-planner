@@ -22,7 +22,7 @@ Every step from choosing dishes to the shopping list belongs to one **week**. A 
 9. Success: a few clicks have become a week plan and a finished shopping list. When you come back later, the family is still saved.
 
 ## Screens and Layout
-- **Welcome screen:** a short text about what the app does, a button to continue.
+- **Welcome screen:** a short text about what the app does, a short "How it works" list of four numbered steps (add your family, choose dishes, get your week plan, shop smart), and a button to continue. It is a light explanation on the same screen, not a separate tutorial or pop-up.
 - **Sign-in:** email and password, with "create account".
 - **Family profile:** a list of the people added and a form to add one (name, sex, age, weight, pregnancy/breastfeeding) with the note "not medical advice". A button leads to the dishes overview.
 - **Week switcher:** shown at the top of the dishes, detail, week plan and shopping pages: previous/next arrows, the name of the week (This week, Next week, Last week, Week of …) with its dates, and a link back to this week. You can go from last week up to 8 weeks ahead.
@@ -120,7 +120,7 @@ Every step from choosing dishes to the shopping list belongs to one **week**. A 
 - The whole app is in English (decided by the user after the first builds).
 
 ## What We're Building
-- Welcome screen
+- Welcome screen with a short "How it works" list
 - Sign-in
 - Family profile (name, sex, age, weight, pregnancy/breastfeeding, note "not medical advice")
 - 17 dishes with photo, name, nutrition, ingredients and method

@@ -61,7 +61,7 @@ PRD ref: `prd.md > Look and Feel`.
 ## Components
 
 ### Welcome and sign-in
-Short text, then registration or sign-in. Errors (wrong password, email already taken) are shown clearly.
+Short text with a "How it works" list of four numbered steps, then registration or sign-in. Errors (wrong password, email already taken) are shown clearly.
 PRD ref: `prd.md > The Core Journey` (steps 1–2).
 
 ### Family profile
