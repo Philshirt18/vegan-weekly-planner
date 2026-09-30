@@ -9,7 +9,7 @@ Build mode: learn
 
 ## Slices
 
-- [ ] **1. Du siehst die App und kannst Gerichte ansehen und für die Woche wählen**
+- [x] **1. Du siehst die App und kannst Gerichte ansehen und für die Woche wählen**
   Becomes usable: Eine laufende App im ruhigen Pastell-Look mit Willkommensscreen, der Übersicht der 17 Gerichte (Foto-Platzhalter und Name), der Detailansicht (Nährstoffe, Zutaten, Anleitung) und dem Schalter "Diese Woche essen". Die Auswahl gilt nur, solange die Seite offen ist.
   Why now: Trägt den Kern (die 17 vorab abgestimmten Gerichte) schon im ersten Schritt und liefert das Gerüst, in das alles andere hineinkommt. Die Gerichtedaten sind außerdem die Grundlage für Warnung und Einkaufsliste.
   PRD ref: `prd.md > The Core Journey` (Schritte 1, 3, 4), `prd.md > Gerichte auswählen`, `prd.md > Look and Feel`
@@ -92,3 +92,4 @@ Activity mode: —
 
 ## Revisions
 
+- Gerichtekarten haben "Diese Woche essen" und "Mehr Details" direkt in der Übersicht — die lernende Person wollte bekannte Gerichte wählen können, ohne jedes Mal die Detailansicht zu öffnen (Änderung in `prd.md` und `spec.md` nachgezogen).

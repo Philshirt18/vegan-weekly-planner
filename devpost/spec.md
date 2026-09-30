@@ -68,7 +68,7 @@ Formular und Liste für Personen (Name, Geschlecht, Alter, Gewicht, Schwangersch
 PRD ref: `prd.md > Familienprofil`.
 
 ### Gerichteübersicht und Detailansicht
-Raster mit Foto und Name für 17 Gerichte, Markierung der gewählten Gerichte, Button "Weiteres Gericht hinzufügen" ohne Funktion. Detailansicht: Foto und Name, Nährstoffe, Zutaten, Anleitung, Schalter "Diese Woche essen". Fehlt ein Bild, erscheint ein sanfter Platzhalter.
+Raster mit Karten für 17 Gerichte (Foto, Name, Knopf "Diese Woche essen", Knopf "Mehr Details"), Markierung der gewählten Gerichte, Button "Weiteres Gericht hinzufügen" ohne Funktion. Detailansicht: Foto und Name, Nährstoffe, Zutaten, Anleitung, Schalter "Diese Woche essen". Fehlt ein Bild, erscheint ein sanfter Platzhalter.
 PRD ref: `prd.md > Gerichte auswählen`.
 
 ### Tage-Auswahl und Wochenplan

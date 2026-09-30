@@ -11,7 +11,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 ## The Core Journey
 1. Beim ersten Öffnen sieht man einen kurzen **Willkommensscreen**, der knapp beschreibt, was die App macht. (`scope.md > The Core Loop`)
 2. Danach kommt das **Familienprofil**: Man legt jedes Familienmitglied an (Name, Geschlecht, Alter, Gewicht, Feld für Schwangerschaft/Stillzeit). Ein Hinweis sagt, dass alle Werte Richtwerte und Orientierung sind, keine medizinische Beratung.
-3. Danach öffnet sich direkt die **Gerichteübersicht** mit den 17 Demo-Gerichten (Foto und Name). Ein Button "Weiteres Gericht hinzufügen" steht dort, tut in der Demo aber nichts.
+3. Danach öffnet sich direkt die **Gerichteübersicht** mit den 17 Demo-Gerichten (Foto, Name und die Knöpfe "Diese Woche essen" und "Mehr Details"). Ein Button "Weiteres Gericht hinzufügen" steht dort, tut in der Demo aber nichts.
 4. Ein Klick auf ein Gericht öffnet die **Detailansicht**. Dort wählt man "Diese Woche essen" an oder ab.
 5. Wurden weniger als 14 Gerichte gewählt, fragt die App, **für welche Tage** der Plan gelten soll (Wochentage zum Anklicken). Jeder Tag hat ein Mittag- und ein Abendessen.
 6. Die App **verteilt** die gewählten Gerichte auf die Mahlzeiten der Woche. Per **Drag und Drop** kann man Gerichte verschieben. Sind an einem Tag beide Gerichte kalziumreich, erscheint eine **Warnung**; man entscheidet selbst, ob man trotzdem so lässt.
@@ -22,7 +22,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 ## Screens and Layout
 - **Willkommensscreen:** kurzer Text, was die App macht, ein Button zum Weitergehen.
 - **Familienprofil:** eine Liste der angelegten Personen und ein Formular zum Hinzufügen (Name, Geschlecht, Alter, Gewicht, Schwangerschaft/Stillzeit) mit dem Hinweis "keine medizinische Beratung". Ein Button führt zur Gerichteübersicht.
-- **Gerichteübersicht:** Raster aus Karten mit Foto und Name für 17 Gerichte. Markierung, welche Gerichte für diese Woche gewählt sind. Button "Weiteres Gericht hinzufügen" (ohne Funktion in der Demo).
+- **Gerichteübersicht:** Raster aus Karten für 17 Gerichte, jede mit Foto, Name, Knopf "Diese Woche essen" (direkt wählen) und Knopf "Mehr Details". Markierung, welche Gerichte für diese Woche gewählt sind. Button "Weiteres Gericht hinzufügen" (ohne Funktion in der Demo).
 - **Detailansicht:** von oben nach unten Foto mit Name, Nährstoffe, Zutaten, Anleitung. Dazu die Auswahl "Diese Woche essen".
 - **Tage wählen:** erscheint nur bei weniger als 14 gewählten Gerichten; Wochentage zum Anklicken.
 - **Wochenplan:** die Woche mit Mittag und Abend pro Tag, Gerichte per Drag und Drop verschiebbar, Warnungen sichtbar, Button "Fertig".
@@ -48,7 +48,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 
 ### Gerichte auswählen
 - 17 Gerichte, alle vegan und vorab nährstoffmäßig abgestimmt (Protein in jedem Gericht, Eisen mit Vitamin C, Kalzium und Eisen nicht im selben Gericht). Die Nutzer:in muss nichts nachrechnen.
-- Übersicht zeigt nur Foto und Name; Details erst nach Klick.
+- Übersicht zeigt Foto, Name und zwei Knöpfe: "Diese Woche essen" (direkt an- oder abwählen, ohne die Detailansicht zu öffnen) und "Mehr Details".
 - Die Detailansicht enthält: Foto mit Name, Nährstoffe, Zutaten, Anleitung (in dieser Reihenfolge), plus die Auswahl "Diese Woche essen".
   - [ ] Es gibt genau 17 Gerichte, jedes mit Foto, Name, Nährstoffen, Zutaten und Anleitung.
   - [ ] Ein Klick öffnet die Detailansicht in der genannten Reihenfolge.

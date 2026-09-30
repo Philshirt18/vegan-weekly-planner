@@ -1,0 +1,114 @@
+:root {
+  --bg: #f6f1e7;
+  --surface: #fbf8f1;
+  --border: #e3dac8;
+  --sage: #b7cbaf;
+  --sage-deep: #6f8f6a;
+  --sage-soft: #dfe9d9;
+  --brown: #5b4a3a;
+  --brown-soft: #8a7866;
+  --warn: #f1dfa8;
+  --radius: 20px;
+  --pill: 999px;
+  font-family: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--brown);
+  background: var(--bg);
+  line-height: 1.55;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); }
+h1 { font-size: 1.8rem; margin: 0.4rem 0 0.8rem; line-height: 1.2; }
+h2 { font-size: 1.15rem; margin: 1.6rem 0 0.6rem; }
+p { margin: 0 0 0.9rem; }
+a { color: inherit; }
+
+.app { min-height: 100vh; display: flex; flex-direction: column; }
+.topbar {
+  padding: 14px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.brand { text-decoration: none; font-weight: 800; font-size: 1.1rem; }
+.content { flex: 1; width: 100%; max-width: 980px; margin: 0 auto; padding: 20px 16px 40px; }
+.footer { text-align: center; font-size: 0.85rem; color: var(--brown-soft); padding: 16px; }
+
+.muted { color: var(--brown-soft); }
+.small { font-size: 0.85rem; font-weight: 400; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.welcome { max-width: 560px; margin: 24px auto; }
+
+.btn {
+  display: inline-block;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--brown);
+  border-radius: var(--pill);
+  padding: 12px 24px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn.primary { background: var(--sage); border-color: var(--sage); }
+.btn.selected { background: var(--sage-deep); border-color: var(--sage-deep); color: #fff; }
+.btn.ghost { background: transparent; border-style: dashed; color: var(--brown-soft); }
+.btn:focus-visible, .dish-card-link:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 2px; }
+
+.section-head p { margin-bottom: 1rem; }
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.dish-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.dish-card-link { display: block; text-decoration: none; flex: 1; }
+.dish-card-link .dish-name { display: block; padding: 12px 14px 8px; }
+.dish-card-actions { display: flex; flex-direction: column; gap: 8px; padding: 4px 14px 14px; }
+.small-btn { padding: 9px 16px; font-size: 0.9rem; text-align: center; }
+.dish-card.selected { border-color: var(--sage-deep); }
+.dish-name { font-weight: 700; }
+.badge {
+  background: var(--sage-soft);
+  color: var(--sage-deep);
+  border-radius: var(--pill);
+  padding: 2px 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.dish-image { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.dish-image.placeholder {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--sage-soft); font-size: 2.4rem;
+}
+.actions { margin-top: 24px; text-align: center; }
+
+.detail { max-width: 640px; margin: 0 auto; }
+.back { display: inline-block; margin-bottom: 12px; text-decoration: none; color: var(--brown-soft); font-weight: 700; }
+.detail-image { border-radius: var(--radius); margin-bottom: 8px; }
+.nutrients { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
+.nutrients li {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 10px 12px; display: flex; flex-direction: column;
+}
+.nutrients strong { font-size: 1.1rem; }
+.nutrients span { color: var(--brown-soft); font-size: 0.85rem; }
+.tag {
+  display: inline-block; background: var(--sage-soft); color: var(--sage-deep);
+  border-radius: var(--pill); padding: 2px 14px; margin: 10px 8px 0 0; font-weight: 700; font-size: 0.85rem;
+}
+.ingredients, .steps { padding-left: 1.3rem; }
+.ingredients li, .steps li { margin-bottom: 6px; }
