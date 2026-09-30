@@ -155,7 +155,9 @@ project/
 │       └── theme.css            # Colours, font, round shapes
 ├── tests/                       # Tests of the logic (Vitest)
 ├── public/
-│   └── images/                  # Pictures of the dishes (<dish-id>.jpg, created by the user)
+│   ├── images/                  # Pictures of the dishes (<dish-id>.jpg, created by the user)
+│   ├── favicon.ico, favicon-32.png, apple-touch-icon.png, icon-192.png, icon-512.png   # app icon (made by scripts/make-icons.py)
+│   └── site.webmanifest         # name, colours and icons when the app is added to the home screen
 ├── devpost/                     # Devpost learning workspace (planning documents)
 ├── firestore.rules              # Security rules for the database
 ├── .env.example                 # Template without real values
