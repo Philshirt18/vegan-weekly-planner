@@ -59,7 +59,7 @@ Build mode: learn
   Learner check: Finish the plan with "Done", check the preview (are the amounts roughly right?), tick off some items and look at the final list. Are the categories right?
   Commit: `Add shopping list with scaled quantities and recipe portion picker`
 
-- [ ] **6. The app is reachable under a link and documented**
+- [x] **6. The app is reachable under a link and documented**
   Becomes usable: The app runs on Vercel under a link, works on the phone and the computer, and the README describes start and set-up.
   Why now: Last technical step, because everything before it should be checkable locally. It shows whether login and database also work online.
   PRD ref: `prd.md > The Core Journey` (step 9)
@@ -72,23 +72,25 @@ Build mode: learn
 ## Hands-on Checkpoints
 
 - [x] Early usable behavior explored — after step 3 (week plan with note): the kernel is visible and the direction can still change.
-- [ ] Final kick-the-tires exploration and feedback completed
+- [x] Final kick-the-tires exploration and feedback completed
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+Result: no further changes requested. The learner explored the live app on the computer and on an iPhone (sign-in, saving, drag and drop, shopping list) and confirmed: "Yes, the proof of concept is ready." Live link checked: `https://vegan-meal-family.vercel.app` serves the app, direct page addresses (`/week`, `/shopping`), icons, manifest and dish pictures.
+
+- [x] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [x] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
+- [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: —
-Route and stops: —
-Edit outcome: —
-Reflection: —
-Activity mode: —
+Activity and evidence: Brief evidence-based recap plus the app map. A guided code route through one real decision (the calcium/iron rule) was offered; the learner did not report doing the tour. The decision → evidence → practice link: the rule "calcium and iron never in the same dish" was checked against dish nutrition computed from the ingredients (`computeNutrients` in `src/lib/dishNutrients.js`), 8 to 9 of 17 dishes broke it, the rule was changed on purpose to a measurable version (`CALCIUM_RICH_MG`, `classify`), recorded in `prd.md > Product Decisions` and locked in by `tests/dishes.test.js` and `tests/planner.test.js`.
+Route and stops: Reference route only (not completed hands-on): `src/lib/dishNutrients.js` (`CALCIUM_RICH_MG`, `classify`) → `src/lib/planner.js` (`calciumWarnings`) → `src/pages/WeekPlan.jsx` ("Keep it anyway").
+Edit outcome: Declined (the learner said everything is perfect as it is); no code changed.
+Reflection: One optional transfer question offered; a personal answer, if given, belongs only in the ignored learner profile.
+Activity mode: Brief recap with a reference route; app map checked for valid HTML, no external resources, and that every mentioned path and symbol exists in the source (not opened in a real browser by the agent).
 
 ## Revisions
 

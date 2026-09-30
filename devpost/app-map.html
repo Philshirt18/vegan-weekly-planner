@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vegan Weekly Planner – App Map</title>
+<style>
+  :root { --bg:#f6f1e7; --surface:#fbf8f1; --border:#e3dac8; --sage:#b7cbaf; --sage-deep:#4f6e4a; --sage-soft:#dfe9d9; --text:#4a3b2d; --muted:#7a6a58; --code:#efe8d8; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#231f1a; --surface:#2c2721; --border:#463e34; --sage:#6f8f6a; --sage-deep:#a9c8a2; --sage-soft:#34412f; --text:#eee5d6; --muted:#b4a691; --code:#39322a; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.55; }
+  main { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+  h1 { font-size: 1.8rem; margin: 0 0 .3rem; }
+  h2 { font-size: 1.25rem; margin: 2rem 0 .6rem; }
+  h3 { font-size: 1.05rem; margin: 1.2rem 0 .3rem; }
+  p { margin: 0 0 .9rem; }
+  .muted { color: var(--muted); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 16px 20px; margin: 12px 0; }
+  code { background: var(--code); border-radius: 6px; padding: 1px 6px; font-size: .92em; overflow-wrap: anywhere; }
+  pre { background: var(--code); border-radius: 12px; padding: 12px 14px; overflow-x: auto; margin: .5rem 0 1rem; }
+  pre code { background: none; padding: 0; }
+  ul, ol { padding-left: 1.3rem; }
+  li { margin-bottom: .4rem; }
+  details { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 10px 16px; margin: 8px 0; }
+  summary { cursor: pointer; font-weight: 700; }
+  summary:focus-visible, a:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 2px; }
+  .diagram { width: 100%; height: auto; }
+  .diagram rect { fill: var(--surface); stroke: var(--border); stroke-width: 2; }
+  .diagram rect.hl { fill: var(--sage-soft); stroke: var(--sage-deep); }
+  .diagram text { fill: var(--text); font-size: 15px; }
+  .diagram text.small { fill: var(--muted); font-size: 12.5px; }
+  .diagram path { stroke: var(--sage-deep); stroke-width: 2.5; fill: none; }
+  .diagram .arrow { fill: var(--sage-deep); stroke: none; }
+  .stops li { margin-bottom: 1rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Vegan Weekly Planner – App Map</h1>
+  <p class="muted">A short take-home guide to how the app is built and where to change things. It is a snapshot of commit <code>de449b6</code> and can drift as the code changes. Everything here works offline; no scripts are needed.</p>
+
+  <h2>What the app does, in five pieces</h2>
+  <div class="card">
+    <p>A weekly meal planner for vegan families. You add your family, choose dishes that are already balanced for nutrients, and the app spreads them over the week, warns when two calcium-rich dishes fall on one day, and builds a shopping list scaled to your family. Each week has its own plan and list.</p>
+    <ol>
+      <li><strong>Screens</strong> – <code>src/pages/</code> (welcome, sign-in, family, dishes, detail, days, week plan, shopping).</li>
+      <li><strong>The 17 dishes</strong> – <code>src/data/dishes.js</code> and the nutrition per ingredient in <code>src/data/ingredients.js</code>.</li>
+      <li><strong>Rules and calculations</strong> – <code>src/lib/</code> (nutrition guideline values, dish nutrition, week plan, shopping list, recipe amounts, weeks).</li>
+      <li><strong>Saving</strong> – <code>src/lib/AppState.jsx</code> holds the state; <code>src/lib/firebase.js</code> is the only file that talks to Firebase (sign-in and the database).</li>
+      <li><strong>Look</strong> – <code>src/styles/theme.css</code> (colours, font, round shapes).</li>
+    </ol>
+  </div>
+
+  <h2>One action, from click to result</h2>
+  <p>You choose dishes and click <em>Create week plan</em>. Here is what happens until you see the yellow note about iron absorption.</p>
+  <svg class="diagram" viewBox="0 0 820 250" role="img" aria-labelledby="dtitle ddesc">
+    <title id="dtitle">From choosing dishes to the calcium note</title>
+    <desc id="ddesc">Four steps: the create week plan button in PlanDays, the distribute function in planner.js, the calciumWarnings function in planner.js which uses the calcium-rich label from dishNutrients.js, and the note shown in WeekPlan.jsx. The plan is also saved through AppState and Firebase.</desc>
+    <defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path class="arrow" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+    <rect x="10" y="20" width="185" height="100" rx="14"/>
+    <text x="24" y="48">1. You click</text><text x="24" y="70" class="small">"Create week plan"</text><text x="24" y="92" class="small">pages/PlanDays.jsx</text><text x="24" y="110" class="small">createPlan</text>
+    <rect x="225" y="20" width="185" height="100" rx="14"/>
+    <text x="239" y="48">2. Spread dishes</text><text x="239" y="70" class="small">over lunch and dinner</text><text x="239" y="92" class="small">lib/planner.js</text><text x="239" y="110" class="small">distribute</text>
+    <rect x="440" y="20" width="185" height="100" rx="14" class="hl"/>
+    <text x="454" y="48">3. Find conflicts</text><text x="454" y="70" class="small">days with two calcium-rich</text><text x="454" y="92" class="small">lib/planner.js</text><text x="454" y="110" class="small">calciumWarnings</text>
+    <rect x="655" y="20" width="155" height="100" rx="14"/>
+    <text x="669" y="48">4. You see</text><text x="669" y="70" class="small">the yellow note</text><text x="669" y="92" class="small">pages/WeekPlan.jsx</text><text x="669" y="110" class="small">notice.warn</text>
+    <path d="M195,70 L221,70" marker-end="url(#ah)"/><path d="M410,70 L436,70" marker-end="url(#ah)"/><path d="M625,70 L651,70" marker-end="url(#ah)"/>
+    <rect x="440" y="150" width="185" height="80" rx="14" class="hl"/>
+    <text x="454" y="178">The rule lives here</text><text x="454" y="200" class="small">lib/dishNutrients.js</text><text x="454" y="218" class="small">CALCIUM_RICH_MG = 300, classify</text>
+    <rect x="225" y="150" width="185" height="80" rx="14"/>
+    <text x="239" y="178">Saved for later</text><text x="239" y="200" class="small">lib/AppState.jsx updateWeek</text><text x="239" y="218" class="small">lib/firebase.js saveWeek</text>
+    <path d="M532,150 L532,124" marker-end="url(#ah)"/><path d="M318,124 L318,146" marker-end="url(#ah)"/>
+  </svg>
+
+  <h2>A route through the code</h2>
+  <p class="muted">A reference route through one real decision. Search for the names in your editor.</p>
+  <ol class="stops">
+    <li><strong>Where the decision lives:</strong> <code>src/lib/dishNutrients.js</code>, search <code>CALCIUM_RICH_MG</code> and <code>classify</code>. A dish is calcium-rich from 300 mg calcium, and iron-rich only if it is <em>not</em> calcium-rich and has at least 5 mg iron. So a dish is never both.</li>
+    <li><strong>Where it is applied:</strong> <code>src/lib/planner.js</code>, search <code>calciumWarnings</code>. It checks every day of the plan and returns the days where lunch and dinner are both calcium-rich.</li>
+    <li><strong>Where you see it:</strong> <code>src/pages/WeekPlan.jsx</code>, search <code>Keep it anyway</code>. The note and its button are shown for each day in that list.</li>
+  </ol>
+  <p>The same rule is checked by tests: <code>tests/dishes.test.js</code> ("never labels a dish calcium-rich and iron-rich at the same time") and <code>tests/planner.test.js</code> ("warns only when both meals of a day are calcium-rich"). Run them with <code>npm test</code>.</p>
+
+  <h2>To change this, start here</h2>
+  <details><summary>Change the wording of a message or button</summary><p>Search for the text in <code>src/pages/</code>, for example <code>Keep it anyway</code> in <code>WeekPlan.jsx</code>. Nothing else depends on it.</p></details>
+  <details><summary>Change the calcium/iron rule</summary><p><code>src/lib/dishNutrients.js</code>: <code>CALCIUM_RICH_MG</code> and <code>IRON_RICH_MG</code>. Then run <code>npm test</code>: the dish tests will tell you if the labels no longer fit (for example if there are too few or too many calcium-rich dishes for the planner to avoid same-day pairs).</p></details>
+  <details><summary>Change a recipe or add a dish</summary><p><code>src/data/dishes.js</code> (ingredients and steps). A new ingredient also needs an entry in <code>src/data/ingredients.js</code>. The picture goes to <code>public/images/&lt;dish-id&gt;.jpg</code>; <code>scripts/convert-images.sh</code> prepares it. The nutrition is computed from the ingredients, so do not type it in.</p></details>
+  <details><summary>Change how portions are counted</summary><p><code>src/lib/nutrition.js</code>: <code>portionFactor</code> (an adult counts 1, a child up to 12 counts 0.5). It scales the shopping list.</p></details>
+  <details><summary>Change how far ahead you can plan</summary><p><code>src/lib/weeks.js</code>: <code>MIN_OFFSET</code> and <code>MAX_OFFSET</code>.</p></details>
+  <details><summary>Change colours or the font</summary><p>The variables at the top of <code>src/styles/theme.css</code>.</p></details>
+  <details><summary>Change who may read or write the data</summary><p><code>firestore.rules</code> (currently: a signed-in person may only read and write their own entry). Paste changed rules into the Firebase console.</p></details>
+
+  <h2>A practice to reuse</h2>
+  <div class="card">
+    <p><strong>Turn a rule into something you can check, then let a check challenge it.</strong></p>
+    <p>The first version of the rule was "calcium and iron never in the same dish". Once the nutrition of each dish was computed from its ingredients (<code>computeNutrients</code> in <code>src/lib/dishNutrients.js</code>), a check showed that 8 to 9 of the 17 dishes broke the rule, because tofu, beans, kale and sesame contain both minerals. The rule was then changed on purpose to a measurable version (a 300 mg threshold in <code>classify</code>), written down in <code>devpost/prd.md</code> under <em>Product Decisions</em>, and locked in by the tests above.</p>
+    <p>On another project: write a requirement so that a test or a number can show whether it holds, and when a check disagrees with the requirement, decide whether the requirement or the data should change and record the reason.</p>
+  </div>
+
+  <h2>Run it again</h2>
+  <pre><code>npm install
+cp .env.example .env.local   # then fill in your Firebase values
+npm run dev                  # open http://localhost:5173
+npm test                     # run the tests</code></pre>
+  <p class="muted">The live version is at <a href="https://vegan-meal-family.vercel.app/">vegan-meal-family.vercel.app</a>. Source commit for this map: <code>de449b6</code>.</p>
+</main>
+</body>
+</html>
