@@ -17,7 +17,9 @@
 }
 
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; } /* iPhones should not enlarge the text on their own */
+body { margin: 0; background: var(--bg); overflow-wrap: break-word; } /* long words wrap instead of running off the screen */
+img { max-width: 100%; }
 h1 { font-size: 1.8rem; margin: 0.4rem 0 0.8rem; line-height: 1.2; }
 h2 { font-size: 1.15rem; margin: 1.6rem 0 0.6rem; }
 p { margin: 0 0 0.9rem; }
@@ -95,7 +97,8 @@ a { color: inherit; }
   display: flex; align-items: center; justify-content: center;
   background: var(--sage-soft); font-size: 2.4rem;
 }
-.actions { margin-top: 24px; text-align: center; }
+.actions { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; align-items: center; }
+.actions > p { width: 100%; margin: 0; }
 
 .detail { max-width: 640px; margin: 0 auto; }
 .back { display: inline-block; margin-bottom: 12px; text-decoration: none; color: var(--brown-soft); font-weight: 700; }
@@ -175,7 +178,8 @@ code { background: var(--sage-soft); border-radius: 8px; padding: 1px 6px; }
 .shop-list { list-style: none; padding: 0; margin: 0; }
 .shop-list li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); }
 .shop-list li:last-child { border-bottom: none; }
-.check { display: flex; align-items: center; gap: 12px; width: 100%; font-weight: 400; font-size: 1rem; cursor: pointer; }
+.check { display: flex; flex-direction: row; align-items: center; gap: 12px; width: 100%; font-weight: 400; font-size: 1rem; cursor: pointer; }
+.check strong { flex: none; text-align: right; }
 .check input { width: 22px; height: 22px; accent-color: var(--sage-deep); flex: none; }
 .check-name { flex: 1; }
 .check input:checked + .check-name { text-decoration: line-through; color: var(--brown-soft); }
