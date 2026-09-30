@@ -1,12 +1,18 @@
+import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { getDish } from '../data/dishes.js'
 import { useAppState } from '../lib/AppState.jsx'
 import DishImage from '../components/DishImage.jsx'
+import { totalPortions } from '../lib/nutrition.js'
+import { cookAmount, formatPortions } from '../lib/recipe.js'
 
 export default function DishDetail() {
   const { id } = useParams()
   const dish = getDish(id)
-  const { selectedDishIds, toggleDish } = useAppState()
+  const { data, selectedDishIds, toggleDish } = useAppState()
+  // Startwert der Portionswahl: die Portionen der Familie (Kinder bis 12 Jahre zählen halb).
+  const familyPortions = totalPortions(data.members) || 1
+  const [portions, setPortions] = useState(familyPortions)
 
   if (!dish) {
     return (
@@ -48,7 +54,7 @@ export default function DishDetail() {
         </div>
       )}
 
-      <h2>Nährstoffe <span className="muted small">(pro Portion, ungefähr)</span></h2>
+      <h2>Nährstoffe <span className="muted small">(pro Erwachsenenportion, ungefähr)</span></h2>
       <ul className="nutrients">
         <li><strong>{protein} g</strong><span>Protein</span></li>
         <li className={dish.calciumRich ? 'highlight' : ''}><strong>{calcium} mg</strong><span>Kalzium</span></li>
@@ -56,10 +62,28 @@ export default function DishDetail() {
         <li className={dish.ironRich ? 'highlight' : ''}><strong>{vitaminC} mg</strong><span>Vitamin C</span></li>
       </ul>
 
-      <h2>Zutaten <span className="muted small">(pro Erwachsenenportion)</span></h2>
+      <h2>Zutaten</h2>
+      <div className="portion-picker">
+        <span id="portion-label">Portionen</span>
+        <div className="stepper" role="group" aria-labelledby="portion-label">
+          <button type="button" className="step-btn" aria-label="Eine halbe Portion weniger"
+            onClick={() => setPortions((p) => Math.max(0.5, p - 0.5))} disabled={portions <= 0.5}>−</button>
+          <strong aria-live="polite">{formatPortions(portions)}</strong>
+          <button type="button" className="step-btn" aria-label="Eine halbe Portion mehr"
+            onClick={() => setPortions((p) => Math.min(20, p + 0.5))} disabled={portions >= 20}>+</button>
+        </div>
+        {portions !== familyPortions && (
+          <button type="button" className="link-btn" onClick={() => setPortions(familyPortions)}>
+            Wie meine Familie ({formatPortions(familyPortions)})
+          </button>
+        )}
+      </div>
+      <p className="muted small">
+        Eine Portion entspricht einer erwachsenen Person, ein Kind bis 12 Jahre zählt halb.
+      </p>
       <ul className="ingredients">
         {dish.ingredients.map((i) => (
-          <li key={i.name}>{i.amount} {i.unit} {i.name}</li>
+          <li key={i.name}>{cookAmount(i, portions)} {i.name}</li>
         ))}
       </ul>
 

@@ -49,7 +49,7 @@ Build mode: learn
   Learner check: Ein Gericht am Computer ziehen und ablegen, dann am Handy. Ändert sich die Warnung mit? Bleibt die Änderung nach dem Neuladen?
   Commit: `Add drag and drop for the week plan`
 
-- [ ] **5. Du klickst auf "Fertig" und bekommst deine Einkaufsliste**
+- [x] **5. Du klickst auf "Fertig" und bekommst deine Einkaufsliste**
   Becomes usable: Vorschau der Einkaufsliste mit allen Zutaten des Plans, für die Familie umgerechnet (Erwachsener 1, Kind bis 12 Jahre 0,5), gleiche Zutaten addiert, nach Kategorien sortiert. Du hakst ab, was du schon hast, und siehst die finale Liste. Abgehaktes wird gespeichert.
   Why now: Das ist der dritte Teil des Kerns und der Schlusspunkt des Ablaufs im PRD. Er braucht Plan und Profil.
   PRD ref: `prd.md > Einkaufsliste`, `prd.md > The Core Journey` (Schritte 7, 8), `prd.md > States and Boundaries`
@@ -95,3 +95,4 @@ Activity mode: —
 - Gerichtekarten haben "Diese Woche essen" und "Mehr Details" direkt in der Übersicht — die lernende Person wollte bekannte Gerichte wählen können, ohne jedes Mal die Detailansicht zu öffnen (Änderung in `prd.md` und `spec.md` nachgezogen).
 - Nährwerte der Gerichte werden aus den Zutaten berechnet (neu: `src/data/ingredients.js`, `src/lib/dishNutrients.js`) statt von Hand geschätzt — die Prüfung ergab, dass die geschätzten Werte bei Eisen, Kalzium und Vitamin C oft deutlich falsch lagen. Die Regel "nie Kalzium und Eisen zusammen" wurde auf "eisenreich nur unter 300 mg Kalzium" präzisiert, weil viele Zutaten beides enthalten; einzelne Rezepte wurden angepasst (Falafel ohne Tahini, weniger Tofu in Erdnuss-Nudeln, Paprika in Erbsen-Pesto-Nudeln und Burritos). Tofu ohne Kalziumangabe: 200 mg/100 g angenommen. Auf Wunsch der lernenden Person.
 - Drag und Drop am Handy (Touch) noch nicht geprüft — auf Wunsch der lernenden Person nach dem Vercel-Schritt (Schritt 6) testen; falls es hakt, Ersatz per Antippen und Auswählen einbauen.
+- Portionswahl im Rezept (Detailansicht, `src/lib/recipe.js`) ergänzt — die lernende Person wollte beim Kochen die Mengen für die Portionen sehen, die gebraucht werden; wirkt bewusst nur auf die Rezeptansicht, nicht auf die Einkaufsliste (Entscheidung der lernenden Person).

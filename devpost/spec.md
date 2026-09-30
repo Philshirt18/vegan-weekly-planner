@@ -68,7 +68,7 @@ Formular und Liste für Personen (Name, Geschlecht, Alter, Gewicht, Schwangersch
 PRD ref: `prd.md > Familienprofil`.
 
 ### Gerichteübersicht und Detailansicht
-Raster mit Karten für 17 Gerichte (Foto, Name, Knopf "Diese Woche essen", Knopf "Mehr Details"), Markierung der gewählten Gerichte, Button "Weiteres Gericht hinzufügen" ohne Funktion. Detailansicht: Foto und Name, Nährstoffe, Zutaten, Anleitung, Schalter "Diese Woche essen". Fehlt ein Bild, erscheint ein sanfter Platzhalter.
+Raster mit Karten für 17 Gerichte (Foto, Name, Knopf "Diese Woche essen", Knopf "Mehr Details"), Markierung der gewählten Gerichte, Button "Weiteres Gericht hinzufügen" ohne Funktion. Detailansicht: Foto und Name, Schwerpunkt-Etikett, Nährstoffe, Zutaten mit Portionswahl (halbe Schritte, Startwert Familie, nur für die Rezeptansicht), Anleitung, Schalter "Diese Woche essen". Fehlt ein Bild, erscheint ein sanfter Platzhalter.
 PRD ref: `prd.md > Gerichte auswählen`.
 
 ### Tage-Auswahl und Wochenplan
@@ -133,6 +133,7 @@ project/
 │   │   └── ingredients.js       # Nährwerte je Zutat (Näherungswerte), Grundlage der Gerichte-Nährwerte
 │   ├── lib/
 │   │   ├── dishNutrients.js     # Nährwerte eines Gerichts aus den Zutaten berechnen und einstufen
+│   │   ├── recipe.js            # Zutatenmengen fürs Kochen auf gewählte Portionen umrechnen
 │   │   ├── nutrition.js         # Richtwerte pro Person
 │   │   ├── planner.js           # Verteilung und Kalzium-Warnung
 │   │   ├── shopping.js          # Mengen umrechnen, addieren, Kategorien

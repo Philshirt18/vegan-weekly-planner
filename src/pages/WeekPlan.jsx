@@ -102,9 +102,7 @@ export default function WeekPlan() {
 
       <div className="actions">
         <Link className="btn" to="/gerichte">Gerichte ändern</Link>{' '}
-        <button type="button" className="btn primary" disabled title="Kommt im nächsten Schritt">
-          Fertig
-        </button>
+        <Link className="btn primary" to="/einkauf">Fertig</Link>
       </div>
     </section>
   )

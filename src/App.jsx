@@ -7,6 +7,7 @@ import Login from './pages/Login.jsx'
 import Profile from './pages/Profile.jsx'
 import PlanDays from './pages/PlanDays.jsx'
 import WeekPlan from './pages/WeekPlan.jsx'
+import Shopping from './pages/Shopping.jsx'
 import RequireAuth from './components/RequireAuth.jsx'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/gerichte/:id" element={<RequireAuth><DishDetail /></RequireAuth>} />
         <Route path="/woche/tage" element={<RequireAuth><PlanDays /></RequireAuth>} />
         <Route path="/woche" element={<RequireAuth><WeekPlan /></RequireAuth>} />
+        <Route path="/einkauf" element={<RequireAuth><Shopping /></RequireAuth>} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Layout>

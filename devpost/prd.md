@@ -52,6 +52,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 - Die Detailansicht enthält: Foto mit Name, Schwerpunkt-Etikett ("Kalziumreich" oder "Eisenreich, mit Vitamin C") mit kurzem, neutralem Hinweis (Kalzium: "wichtig für Knochen und Zähne"), Nährstoffe, Zutaten, Anleitung (in dieser Reihenfolge), plus die Auswahl "Diese Woche essen".
   - [ ] Es gibt genau 17 Gerichte, jedes mit Foto, Name, Nährstoffen, Zutaten und Anleitung.
   - [ ] Ein Klick öffnet die Detailansicht in der genannten Reihenfolge.
+  - [ ] In der Detailansicht lassen sich die Portionen für das Rezept in halben Schritten wählen (Startwert: die Portionen der Familie). Die Zutatenmengen im Rezept rechnen sich um; die Einkaufsliste bleibt bei der Familie.
   - [ ] Das Gericht lässt sich an- und abwählen; die Übersicht zeigt, was gewählt ist.
   - [ ] "Weiteres Gericht hinzufügen" ist sichtbar, hat aber keine Funktion.
 
@@ -96,6 +97,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 - Nur Mittag- und Abendessen — das Frühstück ist fast immer gleich.
 - 17 Gerichte, davon werden bis zu 14 für die Woche gewählt — so hat die Auswahl eine Bedeutung.
 - Rezepte mit Anleitung sind in der Demo drin — die Nutzer:in wollte sie schon in dieser Version.
+- Portionswahl im Rezept (halbe Schritte, Startwert Familie), wirkt nur auf die Rezeptansicht, nicht auf die Einkaufsliste — erleichtert das Kochen; die Einkaufsliste bleibt einfach.
 - Kalzium-und-Eisen-Regel als Warnung statt als Sperre — die Nutzer:in entscheidet selbst.
 - Mengen werden auf die Familie umgerechnet und gleiche Zutaten addiert — die Einkaufsliste soll direkt nutzbar sein.
 - Die App merkt sich die Familie — Wiederkehr ohne erneute Eingabe.
