@@ -21,6 +21,7 @@ export default function Layout({ children }) {
           <nav className="nav">
             <Link to="/profil">Familie</Link>
             <Link to="/gerichte">Gerichte</Link>
+            <Link to="/woche">Wochenplan</Link>
             <button type="button" className="link-btn" onClick={logout}>Abmelden</button>
           </nav>
         )}

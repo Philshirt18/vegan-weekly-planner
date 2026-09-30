@@ -29,7 +29,7 @@ Build mode: learn
   Learner check: Mit E-Mail und Passwort registrieren, Familie eintragen (drei Personen mit einem Kind), Gerichte wählen, Seite neu laden und dich wieder anmelden. Alles sollte wieder da sein. Danach am Handy anmelden und dasselbe sehen.
   Commit: `Add Firebase login, family profile, and saved selection`
 
-- [ ] **3. Du bekommst einen Wochenplan mit Kalzium-Warnung**
+- [x] **3. Du bekommst einen Wochenplan mit Kalzium-Warnung**
   Becomes usable: Bei weniger als 14 Gerichten wählst du die Tage, bei nicht passender Anzahl kommt ein Hinweis, die App verteilt die Gerichte auf Mittag und Abend, und an Tagen mit zwei kalziumreichen Gerichten erscheint eine wegklickbare Warnung. Bei null Gerichten kommt ein Hinweis. Der Plan wird gespeichert.
   Why now: Das ist der zweite Teil des Kerns (nährstoffbewusste Verteilung). Er baut auf den Gerichten aus Schritt 1 und dem Speichern aus Schritt 2 auf.
   PRD ref: `prd.md > Wochenplan`, `prd.md > The Core Journey` (Schritte 5, 6), `prd.md > States and Boundaries`
@@ -71,7 +71,7 @@ Build mode: learn
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — nach Schritt 3 (Wochenplan mit Warnung): Der Kern ist sichtbar und du kannst noch Richtung ändern.
+- [x] Early usable behavior explored — nach Schritt 3 (Wochenplan mit Warnung): Der Kern ist sichtbar und du kannst noch Richtung ändern.
 - [ ] Final kick-the-tires exploration and feedback completed
 
 ## Final Review

@@ -53,10 +53,12 @@ export function AppStateProvider({ children }) {
   )
 
   const toggleDish = (id) =>
+    // Ändert sich die Auswahl, passt der bisherige Wochenplan nicht mehr und wird verworfen.
     update({
       selectedDishIds: data.selectedDishIds.includes(id)
         ? data.selectedDishIds.filter((x) => x !== id)
         : [...data.selectedDishIds, id],
+      plan: {},
     })
 
   const value = { user, data, update, toggleDish, selectedDishIds: data.selectedDishIds, loadError, saveError }

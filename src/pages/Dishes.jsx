@@ -1,17 +1,30 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { DISHES } from '../data/dishes.js'
 import { useAppState } from '../lib/AppState.jsx'
 import DishImage from '../components/DishImage.jsx'
+import { ALL_DAY_IDS, MAX_DISHES, distribute } from '../lib/planner.js'
 
 export default function Dishes() {
-  const { selectedDishIds, toggleDish } = useAppState()
+  const { selectedDishIds, toggleDish, update } = useAppState()
+  const navigate = useNavigate()
+  const count = selectedDishIds.length
+
+  const goToPlan = () => {
+    if (count === MAX_DISHES) {
+      // Genau 14 Gerichte füllen die ganze Woche, dann müssen keine Tage gewählt werden.
+      update({ days: ALL_DAY_IDS, plan: distribute(selectedDishIds, ALL_DAY_IDS) })
+      navigate('/woche')
+    } else {
+      navigate('/woche/tage')
+    }
+  }
 
   return (
     <section>
       <div className="section-head">
         <h1>Gerichte</h1>
         <p className="muted">
-          {selectedDishIds.length} von 14 Gerichten für diese Woche gewählt
+          {count} von {MAX_DISHES} Gerichten für diese Woche gewählt
         </p>
       </div>
 
@@ -40,6 +53,26 @@ export default function Dishes() {
             </article>
           )
         })}
+      </div>
+
+      <div className="actions">
+        {count > MAX_DISHES && (
+          <p className="notice warn" role="alert">
+            Eine Woche hat höchstens {MAX_DISHES} Mahlzeiten (Mittag und Abend). Bitte wähle{' '}
+            {count - MAX_DISHES} {count - MAX_DISHES === 1 ? 'Gericht' : 'Gerichte'} ab.
+          </p>
+        )}
+        {count === 0 && (
+          <p className="muted">Wähle zuerst Gerichte für diese Woche aus.</p>
+        )}
+        <button
+          type="button"
+          className="btn primary"
+          onClick={goToPlan}
+          disabled={count === 0 || count > MAX_DISHES}
+        >
+          Weiter zum Wochenplan
+        </button>
       </div>
 
       <div className="actions">
