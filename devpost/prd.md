@@ -75,11 +75,12 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 - Amounts are scaled to the family.
 - Identical ingredients are added up (for example one total of onions instead of several entries).
 - Sorted by category (vegetables, legumes, chilled items such as tofu and tempeh, and so on).
-- First a preview with all ingredients and amounts; you tick off what is already at home; from that comes the final list.
+- First a preview with all ingredients and amounts; you tick off what is already at home; from that comes the final list, in which you tick off items while shopping.
   - [ ] Every ingredient of the chosen dishes appears on the list.
   - [ ] An ingredient that occurs in several dishes appears only once with the total amount.
   - [ ] Ingredients are grouped by category.
   - [ ] Ticked-off ingredients are missing from the final list.
+  - [ ] In the final list you can tick off items again as you put them in your cart; ticked items are struck through, a counter shows how many are done, and the ticks are saved.
 
 ## States and Boundaries
 - **First start** — welcome screen, then sign-in, then an empty family profile.

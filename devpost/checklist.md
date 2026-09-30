@@ -98,3 +98,4 @@ Activity mode: —
 - Portion picker in the recipe (detail view, `src/lib/recipe.js`) added — the learner wanted to see the amounts for the portions needed while cooking; deliberately affects only the recipe view, not the shopping list (the learner's decision).
 - The calcium note in the week plan is worded around iron absorption and neutrally (calcium itself is not harmful) — the learner's decision.
 - The whole app, the README and the planning documents were translated to English — the learner's decision. Dish IDs and page addresses are now English (`/dishes`, `/week`, `/shopping`); saved choices with old dish IDs are dropped when loading.
+- The final shopping list has tick boxes too (`boughtIngredients`, separate from the "already at home" ticks of the preview), with a counter and struck-through items — the learner's request, for use while shopping.

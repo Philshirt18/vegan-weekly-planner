@@ -11,16 +11,24 @@ export default function Shopping() {
 
   const groups = buildShoppingList(data.plan, data.members)
   const checked = data.checkedIngredients
-  const toggle = (key) =>
-    update({ checkedIngredients: checked.includes(key) ? checked.filter((k) => k !== key) : [...checked, key] })
+  const bought = data.boughtIngredients
+  const toggleList = (field, list) => (key) =>
+    update({ [field]: list.includes(key) ? list.filter((k) => k !== key) : [...list, key] })
+  const toggle = toggleList('checkedIngredients', checked) // preview: already at home
+  const toggleBought = toggleList('boughtIngredients', bought) // final list: in the cart
 
   if (stage === 'final') {
     const missing = withoutChecked(groups, checked)
+    const total = missing.reduce((n, g) => n + g.items.length, 0)
+    const inCart = missing.reduce((n, g) => n + g.items.filter((i) => bought.includes(i.key)).length, 0)
     return (
       <section>
         <div className="section-head">
           <h1>Your shopping list</h1>
-          <p className="muted">This is what you still need for this week.</p>
+          <p className="muted">
+            This is what you still need for this week. Tick items off as you put them in your cart.
+            {total > 0 && ` ${inCart} of ${total} done.`}
+          </p>
         </div>
 
         {missing.length === 0 ? (
@@ -32,7 +40,13 @@ export default function Shopping() {
                 <h2>{g.category}</h2>
                 <ul className="shop-list">
                   {g.items.map((i) => (
-                    <li key={i.key}><span>{i.name}</span><strong>{i.label}</strong></li>
+                    <li key={i.key}>
+                      <label className="check">
+                        <input type="checkbox" checked={bought.includes(i.key)} onChange={() => toggleBought(i.key)} />
+                        <span className="check-name">{i.name}</span>
+                        <strong>{i.label}</strong>
+                      </label>
+                    </li>
                   ))}
                 </ul>
               </div>

@@ -77,7 +77,7 @@ Click days when fewer than 14 dishes are chosen. Note when the number does not f
 PRD ref: `prd.md > Week plan`, `prd.md > States and Boundaries`.
 
 ### Shopping list
-Preview with categories, ingredients and amounts, ticking off, final list. Empty state when everything is ticked off.
+Preview with categories, ingredients and amounts, ticking off what is at home, final list in which items are ticked off while shopping (struck through, with a counter). Empty state when everything is ticked off.
 PRD ref: `prd.md > Shopping list`.
 
 ### Logic
@@ -105,7 +105,8 @@ PRD ref: `prd.md > States and Boundaries` (coming back).
 - `selectedDishIds`: chosen dishes,
 - `days`: chosen days of the week (`mon` … `sun`),
 - `plan`: for every day `lunch` and `dinner` with a dish ID,
-- `checkedIngredients`: ticked ingredients (key `name|unit`).
+- `checkedIngredients`: ingredients ticked in the preview as "already at home" (key `name|unit`),
+- `boughtIngredients`: ingredients ticked in the final list as "in the cart" (key `name|unit`).
 
 **Where it lives, how it changes, what happens on return:**
 - Fixed dishes: in the app, they only change with a new version.

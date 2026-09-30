@@ -9,7 +9,8 @@ const EMPTY = {
   selectedDishIds: [],
   days: [],
   plan: {},
-  checkedIngredients: [],
+  checkedIngredients: [], // ticked in the preview: already at home
+  boughtIngredients: [], // ticked in the final list: in the shopping cart
 }
 
 // Drops saved dish ids that no longer exist (for example after dishes were renamed),
