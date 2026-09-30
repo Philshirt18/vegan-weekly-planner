@@ -25,6 +25,7 @@ a { color: inherit; }
 
 .app { min-height: 100vh; display: flex; flex-direction: column; }
 .topbar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
   padding: 14px 20px;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
@@ -104,11 +105,33 @@ a { color: inherit; }
   background: var(--surface); border: 1px solid var(--border);
   border-radius: 16px; padding: 10px 12px; display: flex; flex-direction: column;
 }
-.nutrients strong { font-size: 1.1rem; }
+.nutrients strong { font-size: 1rem; }
 .nutrients span { color: var(--brown-soft); font-size: 0.85rem; }
-.tag {
-  display: inline-block; background: var(--sage-soft); color: var(--sage-deep);
-  border-radius: var(--pill); padding: 2px 14px; margin: 10px 8px 0 0; font-weight: 700; font-size: 0.85rem;
+.focus-tag {
+  display: flex; flex-direction: column; gap: 2px;
+  background: var(--sage-soft); border-radius: 16px; padding: 12px 18px; margin: 14px 0 0;
 }
+.focus-tag strong { color: var(--sage-deep); font-size: 1.1rem; }
+.focus-tag span { font-size: 0.92rem; color: var(--brown-soft); }
+.nutrients li.highlight { background: var(--sage-soft); border-color: var(--sage); }
 .ingredients, .steps { padding-left: 1.3rem; }
 .ingredients li, .steps li { margin-bottom: 6px; }
+
+.nav { display: flex; gap: 16px; align-items: center; font-weight: 700; }
+.nav a { text-decoration: none; }
+.link-btn { background: none; border: none; padding: 0; font: inherit; font-weight: 700; color: var(--sage-deep); cursor: pointer; text-decoration: underline; }
+.notice { background: var(--sage-soft); border-radius: 16px; padding: 10px 16px; font-size: 0.95rem; }
+.notice.warn { background: var(--warn); }
+.form-card { max-width: 480px; margin: 16px auto; display: flex; flex-direction: column; gap: 12px; }
+.form-card form { display: flex; flex-direction: column; gap: 12px; }
+label { display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 0.95rem; }
+input, select {
+  font: inherit; color: var(--brown); background: #fff; border: 1px solid var(--border);
+  border-radius: 14px; padding: 10px 14px;
+}
+input:focus-visible, select:focus-visible { outline: 3px solid var(--sage-deep); outline-offset: 1px; }
+.switch { text-align: center; margin: 4px 0 0; }
+.members { list-style: none; padding: 0; margin: 12px 0; display: flex; flex-direction: column; gap: 12px; }
+.member { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding: 16px 20px; }
+.targets { margin-top: 4px; font-size: 0.9rem; color: var(--brown-soft); }
+code { background: var(--sage-soft); border-radius: 8px; padding: 1px 6px; }

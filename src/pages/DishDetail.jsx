@@ -35,15 +35,26 @@ export default function DishDetail() {
         {selected ? '✓ Diese Woche essen' : 'Diese Woche essen'}
       </button>
 
+      {dish.calciumRich && (
+        <div className="focus-tag">
+          <strong>Kalziumreich</strong>
+          <span>Kalzium ist wichtig für Knochen und Zähne.</span>
+        </div>
+      )}
+      {dish.ironRich && (
+        <div className="focus-tag">
+          <strong>Eisenreich, mit Vitamin C</strong>
+          <span>Eisen zusammen mit Vitamin C lässt sich gut aufnehmen.</span>
+        </div>
+      )}
+
       <h2>Nährstoffe <span className="muted small">(pro Portion, ungefähr)</span></h2>
       <ul className="nutrients">
         <li><strong>{protein} g</strong><span>Protein</span></li>
-        <li><strong>{calcium} mg</strong><span>Kalzium</span></li>
-        <li><strong>{iron} mg</strong><span>Eisen</span></li>
-        <li><strong>{vitaminC} mg</strong><span>Vitamin C</span></li>
+        <li className={dish.calciumRich ? 'highlight' : ''}><strong>{calcium} mg</strong><span>Kalzium</span></li>
+        <li className={dish.ironRich ? 'highlight' : ''}><strong>{iron} mg</strong><span>Eisen</span></li>
+        <li className={dish.ironRich ? 'highlight' : ''}><strong>{vitaminC} mg</strong><span>Vitamin C</span></li>
       </ul>
-      {dish.calciumRich && <p className="tag">Kalziumreich</p>}
-      {dish.ironRich && <p className="tag">Eisenreich, mit Vitamin C</p>}
 
       <h2>Zutaten <span className="muted small">(pro Erwachsenenportion)</span></h2>
       <ul className="ingredients">

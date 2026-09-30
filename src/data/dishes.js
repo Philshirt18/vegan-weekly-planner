@@ -1,9 +1,12 @@
-// 17 vegane Demo-Gerichte. Alle Nährwerte sind grobe SCHÄTZWERTE pro Erwachsenenportion
-// (Beispieldaten, nicht medizinisch geprüft). Mengen der Zutaten gelten pro Erwachsenenportion.
+import { computeNutrients, classify } from '../lib/dishNutrients.js'
+
+// 17 vegane Demo-Gerichte. Die Zutatenmengen gelten pro Erwachsenenportion.
+// Die Nährwerte werden aus den Zutaten BERECHNET (siehe data/ingredients.js und
+// lib/dishNutrients.js). Sie sind Näherungswerte, nicht medizinisch geprüft.
 //
 // Regeln, die diese Daten einhalten (siehe tests/dishes.test.js):
 //  - Protein in jedem Gericht (mindestens 15 g)
-//  - calciumRich (Kalzium ab 250 mg) und ironRich (Eisen ab 5 mg) treten nie im selben Gericht auf
+//  - Kalziumreich (ab 300 mg) und eisenreich (Eisen ab 5 mg, unter 300 mg Kalzium) schließen sich aus
 //  - eisenreiche Gerichte enthalten eine Vitamin-C-Quelle (mindestens 30 mg)
 
 export const CATEGORIES = [
@@ -30,7 +33,6 @@ export const DISHES = [
   {
     id: 'tofu-gemuese-pfanne',
     name: 'Tofu-Gemüse-Pfanne mit Reis',
-    nutrients: { protein: 24, calcium: 420, iron: 3.5, vitaminC: 60 },
     ingredients: [
       ing('Tofu natur', 150, 'g', K),
       ing('Brokkoli', 150, 'g', V),
@@ -52,7 +54,6 @@ export const DISHES = [
   {
     id: 'linsen-dal',
     name: 'Rotes Linsen-Dal mit Paprika',
-    nutrients: { protein: 22, calcium: 90, iron: 7.5, vitaminC: 55 },
     ingredients: [
       ing('Rote Linsen', 90, 'g', H),
       ing('Kokosmilch', 100, 'ml', P),
@@ -75,7 +76,6 @@ export const DISHES = [
   {
     id: 'kichererbsen-curry',
     name: 'Kichererbsen-Curry mit Spinat',
-    nutrients: { protein: 20, calcium: 140, iron: 6.5, vitaminC: 50 },
     ingredients: [
       ing('Kichererbsen (Dose)', 120, 'g', H),
       ing('Spinat', 100, 'g', V),
@@ -97,7 +97,6 @@ export const DISHES = [
   {
     id: 'spaghetti-linsen-bolognese',
     name: 'Spaghetti mit Linsen-Bolognese',
-    nutrients: { protein: 26, calcium: 110, iron: 7, vitaminC: 35 },
     ingredients: [
       ing('Vollkornspaghetti', 90, 'g', G),
       ing('Rote Linsen', 60, 'g', H),
@@ -119,7 +118,6 @@ export const DISHES = [
   {
     id: 'tempeh-bowl',
     name: 'Tempeh-Bowl mit Brokkoli und Quinoa',
-    nutrients: { protein: 30, calcium: 300, iron: 3.8, vitaminC: 90 },
     ingredients: [
       ing('Tempeh', 120, 'g', K),
       ing('Brokkoli', 150, 'g', V),
@@ -140,7 +138,6 @@ export const DISHES = [
   {
     id: 'schwarze-bohnen-chili',
     name: 'Schwarze-Bohnen-Chili mit Paprika',
-    nutrients: { protein: 21, calcium: 120, iron: 6.5, vitaminC: 60 },
     ingredients: [
       ing('Schwarze Bohnen (Dose)', 150, 'g', H),
       ing('Mais (Dose)', 60, 'g', V),
@@ -162,7 +159,6 @@ export const DISHES = [
   {
     id: 'tofu-suesskartoffel-gruenkohl',
     name: 'Ofen-Tofu mit Süßkartoffel und Grünkohl',
-    nutrients: { protein: 22, calcium: 380, iron: 3.6, vitaminC: 110 },
     ingredients: [
       ing('Tofu natur', 150, 'g', K),
       ing('Süßkartoffel', 250, 'g', V),
@@ -183,12 +179,11 @@ export const DISHES = [
   {
     id: 'falafel-teller',
     name: 'Falafel-Teller mit Tomatensalat',
-    nutrients: { protein: 19, calcium: 120, iron: 6, vitaminC: 45 },
     ingredients: [
       ing('Kichererbsen (Dose)', 150, 'g', H),
       ing('Zwiebel', 0.5, 'Stück', V),
       ing('Petersilie', 10, 'g', V),
-      ing('Tahini', 1, 'EL', N),
+      ing('Olivenöl', 1, 'EL', P),
       ing('Kreuzkümmel', 1, 'TL', P),
       ing('Tomate', 1.5, 'Stück', V),
       ing('Gurke', 0.5, 'Stück', V),
@@ -200,13 +195,12 @@ export const DISHES = [
       'Aus der Masse kleine Bällchen formen.',
       'Im Ofen bei 200 °C 20 Minuten backen, dabei einmal wenden.',
       'Tomate und Gurke würfeln und mit Zitronensaft anmachen.',
-      'Tahini mit etwas Wasser und Zitronensaft verrühren und alles mit dem Fladenbrot anrichten.',
+      'Olivenöl mit Zitronensaft und etwas Wasser zu einer Sauce verrühren und alles mit dem Fladenbrot anrichten.',
     ],
   },
   {
     id: 'nudeln-erbsen-pesto',
     name: 'Nudeln mit Erbsen-Pesto und Tofu-Parmesan',
-    nutrients: { protein: 25, calcium: 150, iron: 3.8, vitaminC: 30 },
     ingredients: [
       ing('Nudeln', 90, 'g', G),
       ing('Erbsen (TK)', 100, 'g', V),
@@ -215,6 +209,7 @@ export const DISHES = [
       ing('Hefeflocken', 1, 'EL', P),
       ing('Basilikum', 10, 'g', V),
       ing('Knoblauch', 1, 'Zehe', V),
+      ing('Paprika', 0.5, 'Stück', V),
       ing('Zitrone', 0.25, 'Stück', O),
       ing('Olivenöl', 1, 'EL', P),
     ],
@@ -222,14 +217,13 @@ export const DISHES = [
       'Nudeln kochen und dabei die Erbsen in den letzten 3 Minuten mitkochen.',
       'Die Hälfte der Erbsen mit Cashews, Basilikum, Knoblauch, Olivenöl und Zitronensaft zu Pesto pürieren.',
       'Tofu mit Hefeflocken und einer Prise Salz zerbröseln (Tofu-Parmesan).',
-      'Nudeln mit dem Pesto mischen.',
+      'Paprika in feine Streifen schneiden und mit den Nudeln und dem Pesto mischen.',
       'Mit Tofu-Parmesan bestreuen.',
     ],
   },
   {
     id: 'gemuese-linsen-suppe',
     name: 'Gemüse-Linsen-Suppe mit Vollkornbrot',
-    nutrients: { protein: 20, calcium: 100, iron: 6.5, vitaminC: 40 },
     ingredients: [
       ing('Braune Linsen', 80, 'g', H),
       ing('Karotte', 1, 'Stück', V),
@@ -252,7 +246,6 @@ export const DISHES = [
   {
     id: 'kuerbis-kichererbsen-tahini',
     name: 'Kürbis-Kichererbsen-Ofengemüse mit Tahini',
-    nutrients: { protein: 20, calcium: 300, iron: 3.9, vitaminC: 40 },
     ingredients: [
       ing('Kürbis', 250, 'g', V),
       ing('Kichererbsen (Dose)', 120, 'g', H),
@@ -273,7 +266,6 @@ export const DISHES = [
   {
     id: 'tofu-ruehrei-ofenkartoffeln',
     name: 'Tofu-Rührei mit Ofenkartoffeln und Spinat',
-    nutrients: { protein: 22, calcium: 170, iron: 4.2, vitaminC: 45 },
     ingredients: [
       ing('Tofu natur', 150, 'g', K),
       ing('Kartoffeln', 250, 'g', V),
@@ -294,20 +286,20 @@ export const DISHES = [
   {
     id: 'bohnen-burritos',
     name: 'Bohnen-Burritos mit Guacamole',
-    nutrients: { protein: 20, calcium: 140, iron: 4.4, vitaminC: 50 },
     ingredients: [
       ing('Kidneybohnen (Dose)', 120, 'g', H),
       ing('Mais (Dose)', 50, 'g', V),
       ing('Tortilla', 2, 'Stück', G),
       ing('Avocado', 0.5, 'Stück', O),
       ing('Tomate', 1, 'Stück', V),
+      ing('Paprika', 0.5, 'Stück', V),
       ing('Reis', 40, 'g', G),
       ing('Limette', 0.5, 'Stück', O),
       ing('Kreuzkümmel', 1, 'TL', P),
     ],
     steps: [
       'Reis kochen.',
-      'Bohnen und Mais mit Kreuzkümmel 5 Minuten in der Pfanne erwärmen.',
+      'Bohnen, Mais und gewürfelte Paprika mit Kreuzkümmel 5 Minuten in der Pfanne erwärmen.',
       'Avocado mit Limettensaft zerdrücken (Guacamole), Tomate würfeln.',
       'Tortillas kurz erwärmen.',
       'Alles auf die Tortillas geben, einrollen und servieren.',
@@ -316,10 +308,9 @@ export const DISHES = [
   {
     id: 'erdnuss-tofu-nudeln',
     name: 'Erdnuss-Tofu-Nudeln mit Gemüse',
-    nutrients: { protein: 28, calcium: 190, iron: 4.5, vitaminC: 60 },
     ingredients: [
       ing('Nudeln', 90, 'g', G),
-      ing('Tofu natur', 150, 'g', K),
+      ing('Tofu natur', 80, 'g', K),
       ing('Erdnussbutter', 2, 'EL', N),
       ing('Karotte', 1, 'Stück', V),
       ing('Paprika', 0.5, 'Stück', V),
@@ -338,7 +329,6 @@ export const DISHES = [
   {
     id: 'kartoffel-bohnen-auflauf',
     name: 'Kartoffel-Bohnen-Auflauf',
-    nutrients: { protein: 19, calcium: 160, iron: 4.5, vitaminC: 45 },
     ingredients: [
       ing('Kartoffeln', 250, 'g', V),
       ing('Weiße Bohnen (Dose)', 120, 'g', H),
@@ -359,7 +349,6 @@ export const DISHES = [
   {
     id: 'weisse-bohnen-eintopf',
     name: 'Weißer-Bohnen-Eintopf mit Grünkohl',
-    nutrients: { protein: 20, calcium: 320, iron: 3.9, vitaminC: 85 },
     ingredients: [
       ing('Weiße Bohnen (Dose)', 150, 'g', H),
       ing('Grünkohl', 120, 'g', V),
@@ -380,7 +369,6 @@ export const DISHES = [
   {
     id: 'rote-bete-linsen-salat',
     name: 'Rote-Bete-Linsen-Salat mit Orange',
-    nutrients: { protein: 18, calcium: 110, iron: 5.6, vitaminC: 65 },
     ingredients: [
       ing('Braune Linsen', 80, 'g', H),
       ing('Rote Bete (gegart)', 150, 'g', V),
@@ -398,11 +386,9 @@ export const DISHES = [
       'Dressing darübergeben und mit gehackten Walnüssen bestreuen.',
     ],
   },
-].map((d) => ({
-  ...d,
-  image: `/images/${d.id}.jpg`,
-  calciumRich: d.nutrients.calcium >= 250,
-  ironRich: d.nutrients.iron >= 5,
-}))
+].map((d) => {
+  const nutrients = computeNutrients(d.ingredients)
+  return { ...d, nutrients, image: `/images/${d.id}.jpg`, ...classify(nutrients) }
+})
 
 export const getDish = (id) => DISHES.find((d) => d.id === id)

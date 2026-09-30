@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useAppState } from '../lib/AppState.jsx'
 
 export default function Welcome() {
+  const { user } = useAppState()
+
   return (
     <section className="card welcome">
       <h1>Willkommen!</h1>
@@ -10,7 +13,7 @@ export default function Welcome() {
         mit Hinweis, wenn zwei kalziumreiche Gerichte am selben Tag landen.
       </p>
       <p>Am Ende bekommst du eine Einkaufsliste, umgerechnet auf deine Familie.</p>
-      <Link className="btn primary" to="/gerichte">Los geht's</Link>
+      <Link className="btn primary" to={user ? '/gerichte' : '/login'}>Los geht's</Link>
     </section>
   )
 }

@@ -19,7 +19,7 @@ Build mode: learn
   Learner check: App öffnen, ein Gericht anklicken, Nährstoffe/Zutaten/Anleitung ansehen, "Diese Woche essen" an- und abwählen. Sieht es so aus, wie du es dir vorgestellt hast? Sind die Gerichte und ihre Nährwerte plausibel?
   Commit: `Add app shell, look and feel, and 17 dishes with detail view`
 
-- [ ] **2. Du kannst dich anmelden und deine Familie wird gespeichert**
+- [x] **2. Du kannst dich anmelden und deine Familie wird gespeichert**
   Becomes usable: Registrieren und Anmelden mit E-Mail und Passwort, Familienprofil mit Richtwerten (Name, Geschlecht, Alter, Gewicht, Schwangerschaft/Stillzeit), Hinweis "keine medizinische Beratung". Profil und gewählte Gerichte sind nach Neuladen und auf einem anderen Gerät wieder da.
   Why now: Firebase ist das größte Risiko (Konto, Zugangswerte, Sicherheitsregeln). Es kommt früh, damit Überraschungen früh auffallen, und liefert das Speichern für alles Folgende.
   PRD ref: `prd.md > Familienprofil`, `prd.md > The Core Journey` (Schritte 2, 9), `prd.md > States and Boundaries`
@@ -93,3 +93,4 @@ Activity mode: —
 ## Revisions
 
 - Gerichtekarten haben "Diese Woche essen" und "Mehr Details" direkt in der Übersicht — die lernende Person wollte bekannte Gerichte wählen können, ohne jedes Mal die Detailansicht zu öffnen (Änderung in `prd.md` und `spec.md` nachgezogen).
+- Nährwerte der Gerichte werden aus den Zutaten berechnet (neu: `src/data/ingredients.js`, `src/lib/dishNutrients.js`) statt von Hand geschätzt — die Prüfung ergab, dass die geschätzten Werte bei Eisen, Kalzium und Vitamin C oft deutlich falsch lagen. Die Regel "nie Kalzium und Eisen zusammen" wurde auf "eisenreich nur unter 300 mg Kalzium" präzisiert, weil viele Zutaten beides enthalten; einzelne Rezepte wurden angepasst (Falafel ohne Tahini, weniger Tofu in Erdnuss-Nudeln, Paprika in Erbsen-Pesto-Nudeln und Burritos). Tofu ohne Kalziumangabe: 200 mg/100 g angenommen. Auf Wunsch der lernenden Person.

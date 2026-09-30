@@ -93,8 +93,8 @@ PRD ref: `prd.md > States and Boundaries` (Wiederkehr).
 ## Data Model
 **Feste Daten (in der App, ändern sich nicht):** Liste der 17 Gerichte. Pro Gericht:
 - `id`, `name`, `image` (Pfad),
-- `nutrients` (Protein, Kalzium, Eisen als Schätzwerte je Portion, Vitamin C als Hinweis),
-- `calciumRich` (ja/nein), `ironRich` (ja/nein),
+- `nutrients` (Protein, Kalzium, Eisen, Vitamin C je Erwachsenenportion) — **aus den Zutaten berechnet**, nicht von Hand eingetragen,
+- `calciumRich` (ab 300 mg Kalzium), `ironRich` (Eisen ab 5 mg **und** unter 300 mg Kalzium) — aus den berechneten Werten abgeleitet, nie beides zugleich,
 - `ingredients`: Liste mit `name`, `amount` (pro Erwachsenenportion), `unit`, `category`,
 - `steps`: Anleitung.
 
@@ -129,8 +129,10 @@ project/
 │   │   └── Shopping.jsx         # Vorschau, Abhaken, finale Liste
 │   ├── components/              # Wiederverwendete Teile (Karten, Warnung, Buttons)
 │   ├── data/
-│   │   └── dishes.js            # 17 Gerichte (fest)
+│   │   ├── dishes.js            # 17 Gerichte (fest, Zutaten und Anleitung)
+│   │   └── ingredients.js       # Nährwerte je Zutat (Näherungswerte), Grundlage der Gerichte-Nährwerte
 │   ├── lib/
+│   │   ├── dishNutrients.js     # Nährwerte eines Gerichts aus den Zutaten berechnen und einstufen
 │   │   ├── nutrition.js         # Richtwerte pro Person
 │   │   ├── planner.js           # Verteilung und Kalzium-Warnung
 │   │   ├── shopping.js          # Mengen umrechnen, addieren, Kategorien
@@ -166,7 +168,7 @@ project/
 - **Ein Eintrag pro Nutzer:in** statt mehrerer Tabellen — reicht für die Demo.
 - **Neuladen statt Live-Abgleich** zwischen den Geräten — kein Echtzeit-Aufwand.
 - **Feste Portionsregel** (Erwachsener 1, Kind bis 12 Jahre 0,5) statt Berechnung aus Alter und Gewicht.
-- **Geschätzte Nährstoffwerte pro Gericht**, als "ungefähr" gekennzeichnet — der Kern (Warnung, Verteilung, Einkaufsliste) bleibt echt. Die Nährstoffwerte sind Beispieldaten, keine geprüften Werte.
+- **Nährwerte pro Gericht aus einer Tabelle mit Näherungswerten je Zutat berechnet** (rohe Zutaten, Vitamin C mit Kochverlust 0,7; Tofu mit 200 mg Kalzium pro 100 g angenommen), als "ungefähr" gekennzeichnet. Keine geprüfte Nährwertdatenbank.
 - **Bilder von dir** erstellt, bis dahin Platzhalter.
 
 ## Decisions and Open Issues

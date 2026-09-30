@@ -49,7 +49,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 ### Gerichte auswählen
 - 17 Gerichte, alle vegan und vorab nährstoffmäßig abgestimmt (Protein in jedem Gericht, Eisen mit Vitamin C, Kalzium und Eisen nicht im selben Gericht). Die Nutzer:in muss nichts nachrechnen.
 - Übersicht zeigt Foto, Name und zwei Knöpfe: "Diese Woche essen" (direkt an- oder abwählen, ohne die Detailansicht zu öffnen) und "Mehr Details".
-- Die Detailansicht enthält: Foto mit Name, Nährstoffe, Zutaten, Anleitung (in dieser Reihenfolge), plus die Auswahl "Diese Woche essen".
+- Die Detailansicht enthält: Foto mit Name, Schwerpunkt-Etikett ("Kalziumreich" oder "Eisenreich, mit Vitamin C") mit kurzem, neutralem Hinweis (Kalzium: "wichtig für Knochen und Zähne"), Nährstoffe, Zutaten, Anleitung (in dieser Reihenfolge), plus die Auswahl "Diese Woche essen".
   - [ ] Es gibt genau 17 Gerichte, jedes mit Foto, Name, Nährstoffen, Zutaten und Anleitung.
   - [ ] Ein Klick öffnet die Detailansicht in der genannten Reihenfolge.
   - [ ] Das Gericht lässt sich an- und abwählen; die Übersicht zeigt, was gewählt ist.
@@ -89,7 +89,8 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 
 ## Product Decisions
 - Nur vegan, keine anderen Ernährungsformen in der Demo — mehr Fokus und weniger Aufwand.
-- Nährstoffe stecken in den vorab abgestimmten Gerichten statt live berechnet — die Nutzer:in muss nicht rechnen, die Demo bleibt einfach.
+- Nährstoffe stecken in den vorab abgestimmten Gerichten statt live berechnet — die Nutzer:in muss nicht rechnen, die Demo bleibt einfach. Die Nährwerte der Gerichte werden aus den Zutaten berechnet (Näherungswerte).
+- Regel "Kalzium und Eisen nicht zusammen": Ein Gericht gilt als kalziumreich ab 300 mg Kalzium und als eisenreich nur mit weniger als 300 mg Kalzium (ab etwa 300 mg lässt die Eisenaufnahme in einer Mahlzeit merklich nach). Grund: Viele pflanzliche Lebensmittel (Tofu, Bohnen, Grünkohl, Sesam) enthalten beides, eine strikte Trennung wäre nicht machbar. Tofu ohne Kalziumangabe: 200 mg pro 100 g angenommen.
 - Profil mit Gewicht, Alter, Geschlecht und Schwangerschaft/Stillzeit — Richtwerte passen sich der Person an, auch für Kinder.
 - Hinweis "keine medizinische Beratung" — verantwortungsvoll; die Werte sind Orientierung.
 - Nur Mittag- und Abendessen — das Frühstück ist fast immer gleich.
@@ -121,6 +122,7 @@ Source: `scope.md > The Unique Kernel`, `scope.md > The Core Loop`, `scope.md > 
 - Weitere Ernährungsformen als Einstellung.
 - Aktivität der Familienmitglieder als weiterer Faktor für die Richtwerte.
 - Warnung auch bei zwei eisenreichen Gerichten am selben Tag.
+- Hinweise zu weiteren veganen Nährstoffen (vor allem Vitamin B12, außerdem Jod, Vitamin D, Zink, Omega-3), die sich nicht über einzelne Gerichte decken lassen.
 
 ## Non-Goals
 - Keine medizinische Beratung oder Diagnose.
