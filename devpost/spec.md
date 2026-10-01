@@ -47,6 +47,9 @@ Versions checked with `npm view` on 2026-09-30 (current at that time): React 19.
 - **Set up Firebase (once, by the user in the browser):** create a Firebase project, enable Authentication with email/password, create Firestore, paste the security rules from `firestore.rules`, register a web app. The access values go into the file `.env.local` (not into the repository, not into the chat). A template `.env.example` without real values is in the repository.
 - **Publish:** connect the GitHub repository to Vercel, enter the values from `.env.local` as environment variables in the Vercel settings, add the Vercel address in Firebase Authentication under "Authorized domains".
 - **For the submission:** the short demo video and the public GitHub repository (with `scope.md`, `prd.md`, `spec.md`) are required. The Vercel link is extra.
+- **Public GitHub repository:** https://github.com/Philshirt18/vegan-weekly-planner (public, checked from outside; contains `devpost/scope.md`, `devpost/prd.md`, `devpost/spec.md`).
+- **Live app (optional extra):** https://vegan-meal-family.vercel.app/
+- **Demo video:** link to be added here once it is uploaded.
 - **Recording:** record with a test account, showing the whole flow (profile, 14 dishes, drag and drop, note, shopping list).
 
 ## Look and Feel
