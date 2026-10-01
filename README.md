@@ -6,6 +6,8 @@ day, swap dishes by drag and drop, and get a shopping list scaled to your family
 
 > **Note:** All nutrition values are approximations and guideline values for orientation. They are **not medical advice**.
 
+**Live demo:** https://vegan-meal-family.vercel.app/
+
 Built with React, Vite and Firebase (login + database), hosted on Vercel. This project was planned with the Devpost Learn
 skills: see [`devpost/scope.md`](devpost/scope.md), [`devpost/prd.md`](devpost/prd.md) and
 [`devpost/spec.md`](devpost/spec.md).
