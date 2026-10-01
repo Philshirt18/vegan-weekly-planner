@@ -82,3 +82,7 @@ devpost/        Planning documents (scope, prd, spec) and the build checklist
 - Dish photos: as long as no picture is in `public/images/` (`<dish-id>.jpg`, 4:3, 1200 × 900), the app shows a placeholder for that dish. The pictures are AI-generated. On macOS, `scripts/convert-images.sh` turns originals from `images-originals/` (named by dish id, not committed) into the right size and format. The app icon and favicon are made from `images-originals/icon/app-icon.png` with `scripts/make-icons.py` (needs Pillow).
 - Adding or editing your own dishes, other diets and further nutrients (for example vitamin B12) are not part of this
   demo.
+
+## License
+
+MIT, see [LICENSE](LICENSE).
